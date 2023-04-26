@@ -12,9 +12,9 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       title: Container(
         color: Colors.black,
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: const Text(
-          "Zero To Unicorn",
-          style: TextStyle(
+        child: Text(
+          title,
+          style: const TextStyle(
               color: Colors.white,
               fontFamily: 'Averni',
               fontSize: 24,
@@ -25,7 +25,9 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
       actions: [
         IconButton(
           icon: const Icon(Icons.favorite),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/wishlist');
+          },
         ),
       ],
     );

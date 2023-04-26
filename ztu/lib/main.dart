@@ -1,6 +1,6 @@
- 
 import 'package:flutter/material.dart';
-import 'package:ztu/widgets/custom_appbar.dart';
+import 'package:ztu/config/app_route.dart';
+import 'package:ztu/screens/home/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,19 +17,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      onGenerateRoute: AppRoute.onGenerateRoute,
+      initialRoute: HomeScreen.routeName,
       home: HomeScreen(),
     );
   }
 }
-
-class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(title: 'Zero To Unicorn'),
-      bottomNavigationBar: BottomAppBar(),
-    );
-  }
-}
-
-
