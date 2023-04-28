@@ -7,8 +7,6 @@ import 'package:ztu/screens/wishlist/wishlist_screen.dart';
 
 class AppRoute {
   static Route onGenerateRoute(RouteSettings settings) {
-    print('This is route: ${settings.name}');
-
     switch (settings.name) {
       case '/':
         return HomeScreen.route();

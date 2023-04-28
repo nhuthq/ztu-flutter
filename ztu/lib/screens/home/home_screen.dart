@@ -4,6 +4,7 @@ import 'package:ztu/models/category_model.dart';
 import 'package:ztu/widgets/custom_appbar.dart';
 import 'package:ztu/widgets/custom_nav_bar.dart';
 import 'package:ztu/widgets/hero_carousel_card.dart';
+import 'package:ztu/widgets/section_title.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/';
@@ -22,15 +23,27 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
         appBar: const CustomAppBar(title: 'Zero To Unicorn'),
         bottomNavigationBar: const CustomBottomNavBar(),
-        body: CarouselSlider(
-          options: CarouselOptions(
-              aspectRatio: 1.5,
-              viewportFraction: 0.9,
-              enlargeCenterPage: true,
-              enlargeStrategy: CenterPageEnlargeStrategy.height),
-          items: Category.categories
-              .map((categoryItem) => HeroCarouselCard(category: categoryItem))
-              .toList(),
+        body: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: CarouselSlider(
+                options: CarouselOptions(
+                    aspectRatio: 1.5,
+                    viewportFraction: 0.9,
+                    enlargeCenterPage: true,
+                    enlargeStrategy: CenterPageEnlargeStrategy.height),
+                items: Category.categories
+                    .map((categoryItem) =>
+                        HeroCarouselCard(category: categoryItem))
+                    .toList(),
+              ),
+            ),
+            
+            const SectionTitle(
+              title: "RECOMMENDED",
+            )
+          ],
         ));
   }
 }
