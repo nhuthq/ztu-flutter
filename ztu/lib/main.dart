@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ztu/config/app_route.dart';
+import 'package:ztu/config/theme.dart';
 import 'package:ztu/screens/home/home_screen.dart';
 
 void main() {
@@ -14,12 +15,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Zero To Unicorn',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: theme(),
       onGenerateRoute: AppRoute.onGenerateRoute,
       initialRoute: HomeScreen.routeName,
-      home: HomeScreen(),
+      home: const HomeScreen(),
     );
   }
 }
