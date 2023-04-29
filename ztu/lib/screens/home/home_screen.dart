@@ -1,9 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ztu/models/category_model.dart';
+import 'package:ztu/models/product.dart';
 import 'package:ztu/widgets/custom_appbar.dart';
 import 'package:ztu/widgets/custom_nav_bar.dart';
 import 'package:ztu/widgets/hero_carousel_card.dart';
+import 'package:ztu/widgets/product_card.dart';
+import 'package:ztu/widgets/product_carousel.dart';
 import 'package:ztu/widgets/section_title.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -39,10 +42,10 @@ class HomeScreen extends StatelessWidget {
                     .toList(),
               ),
             ),
-            
             const SectionTitle(
               title: "RECOMMENDED",
-            )
+            ),
+            ProductCarousel(products: Product.products)
           ],
         ));
   }

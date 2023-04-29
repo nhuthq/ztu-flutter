@@ -7,12 +7,12 @@ class SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.only(right: 20, left: 20, bottom: 8),
       child: Align(
         alignment: Alignment.topLeft,
         child: Text(
           title,
-          style: Theme.of(context).textTheme.displaySmall,
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
     );

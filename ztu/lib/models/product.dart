@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:ztu/models/category_model.dart';
 
 class Product extends Equatable {
   final String name;
@@ -22,7 +21,7 @@ class Product extends Equatable {
   List<Object?> get props =>
       [name, category, price, imgUrl, isPopular, isRecommended];
 
-  static List<Product> categories = const [
+  static List<Product> products = const [
     Product(
       name: 'Cocacola Zero',
       category: 'Soft Drink',
@@ -145,7 +144,7 @@ class Product extends Equatable {
       category: 'Beer',
       price: 8.99,
       imgUrl:
-          'https://images.unsplash.com/photo-164264B7237318-3e30ff181a3c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+          'https://images.unsplash.com/photo-1642647095389-5e62882f32b0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80',
       isRecommended: true,
       isPopular: true,
     ),

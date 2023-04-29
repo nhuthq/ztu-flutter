@@ -16,12 +16,16 @@ TextTheme textTheme() {
         color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
     displaySmall: TextStyle(
         color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+    headlineLarge: TextStyle(
+        color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
     headlineMedium: TextStyle(
         color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
     headlineSmall: TextStyle(
         color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
     titleLarge: TextStyle(
-        color: Colors.black, fontSize: 14, fontWeight: FontWeight.normal),
+        color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
+    titleMedium: TextStyle(
+        color: Colors.black, fontSize: 12, fontWeight: FontWeight.normal),
     bodyLarge: TextStyle(
         color: Colors.black, fontSize: 12, fontWeight: FontWeight.normal),
     bodyMedium: TextStyle(
