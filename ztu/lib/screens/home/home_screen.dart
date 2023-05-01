@@ -24,9 +24,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const CustomAppBar(title: 'Zero To Unicorn'),
-        bottomNavigationBar: const CustomBottomNavBar(),
-        body: Column(
+      appBar: const CustomAppBar(title: 'Zero To Unicorn'),
+      bottomNavigationBar: const CustomBottomNavBar(),
+      body: SingleChildScrollView(
+        child: Column(
           children: [
             Container(
               padding: const EdgeInsets.symmetric(vertical: 20),
@@ -45,8 +46,20 @@ class HomeScreen extends StatelessWidget {
             const SectionTitle(
               title: "RECOMMENDED",
             ),
-            ProductCarousel(products: Product.products)
+            ProductCarousel(
+                products: Product.products
+                    .where((product) => product.isRecommended)
+                    .toList()),
+            const SectionTitle(
+              title: "MOST POPULAR",
+            ),
+            ProductCarousel(
+                products: Product.products
+                    .where((product) => product.isPopular)
+                    .toList())
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
