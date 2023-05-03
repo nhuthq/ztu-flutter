@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: const EdgeInsets.only(top: 10),
               child: CarouselSlider(
                 options: CarouselOptions(
                     aspectRatio: 1.5,

@@ -3,14 +3,16 @@ import 'package:ztu/models/product.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
-  const ProductCard({super.key, required this.product});
+  final double widthFactor;
+  const ProductCard({super.key, required this.product, this.widthFactor = 2.5});
 
   @override
   Widget build(BuildContext context) {
+    final double widthValue = MediaQuery.of(context).size.width / widthFactor;
     return Stack(
       children: [
         Container(
-          width: MediaQuery.of(context).size.width / 2.5,
+          width: widthValue,
           height: 190,
           child: Image.network(
             product.imgUrl,
@@ -20,7 +22,7 @@ class ProductCard extends StatelessWidget {
         Positioned(
           top: 95,
           child: Container(
-            width: MediaQuery.of(context).size.width / 2.5,
+            width: widthValue,
             height: 80,
             decoration: BoxDecoration(
               color: Colors.blue.withAlpha(50),
@@ -31,7 +33,7 @@ class ProductCard extends StatelessWidget {
           top: 100,
           left: 5,
           child: Container(
-            width: MediaQuery.of(context).size.width / 2.5 - 10,
+            width: widthValue - 10,
             height: 70,
             decoration: const BoxDecoration(
               color: Colors.black,
