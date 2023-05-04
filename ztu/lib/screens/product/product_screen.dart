@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ztu/models/product.dart';
 import 'package:ztu/widgets/custom_appbar.dart';
-import 'package:ztu/widgets/custom_nav_bar.dart';
 import 'package:ztu/widgets/hero_carousel_card.dart';
 
 class ProductScreen extends StatelessWidget {
@@ -23,7 +22,36 @@ class ProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: product.name),
-      bottomNavigationBar: const CustomBottomNavBar(),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.black,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          height: 70,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.share),
+                color: Colors.white,
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.favorite),
+                color: Colors.white,
+              ),
+              ElevatedButton(
+                  style:
+                      ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                  onPressed: () {},
+                  child: Text(
+                    "ADD TO CART",
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ))
+            ],
+          ),
+        ),
+      ),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 20),
         children: [
