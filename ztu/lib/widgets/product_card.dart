@@ -4,11 +4,22 @@ import 'package:ztu/models/product.dart';
 class ProductCard extends StatelessWidget {
   final Product product;
   final double widthFactor;
-  const ProductCard({super.key, required this.product, this.widthFactor = 2.5});
+  final double leftMargin;
+  final bool isWishlist;
+  final double defaultHeight = 200;
+
+  const ProductCard({
+    super.key,
+    required this.product,
+    this.widthFactor = 2.5,
+    this.leftMargin = 5,
+    this.isWishlist = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     final double widthValue = MediaQuery.of(context).size.width / widthFactor;
+    final double topMatgin = defaultHeight / 2;
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, '/product', arguments: product);
@@ -17,68 +28,66 @@ class ProductCard extends StatelessWidget {
         children: [
           Container(
             width: widthValue,
-            height: 190,
+            height: defaultHeight,
             child: Image.network(
               product.imgUrl,
               fit: BoxFit.cover,
             ),
           ),
           Positioned(
-            top: 95,
+            left: leftMargin,
+            right: 5,
+            bottom: 5,
             child: Container(
-              width: widthValue,
-              height: 80,
+              padding: const EdgeInsets.all(5),
               decoration: BoxDecoration(
-                color: Colors.blue.withAlpha(50),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 100,
-            left: 5,
-            child: Container(
-              width: widthValue - 10,
-              height: 70,
-              decoration: const BoxDecoration(
-                color: Colors.black,
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            product.name,
-                            maxLines: 2,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleSmall!
-                                .copyWith(color: Colors.white),
-                          ),
-                          Text(
-                            '\$${product.price}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelMedium!
-                                .copyWith(color: Colors.white),
-                          )
-                        ],
-                      ),
+                  color: Colors.black.withAlpha(200),
+                  border:
+                      Border.all(color: Colors.grey.withAlpha(80), width: 5)),
+              width: widthValue - 5 - leftMargin,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          product.name,
+                          maxLines: 2,
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleSmall!
+                              .copyWith(color: Colors.white),
+                        ),
+                        Text(
+                          '\$${product.price}',
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium!
+                              .copyWith(color: Colors.white),
+                        )
+                      ],
                     ),
-                    Expanded(
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.add_circle),
-                        color: Colors.white,
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                  Expanded(
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.add_circle),
+                      color: Colors.white,
+                    ),
+                  ),
+                  isWishlist
+                      ? Expanded(
+                          child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(Icons.delete_forever_rounded),
+                            color: Colors.white,
+                          ),
+                        )
+                      : const SizedBox(),
+                ],
               ),
             ),
           ),
