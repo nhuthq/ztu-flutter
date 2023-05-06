@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ztu/models/product.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ztu/blocs/wishlist/wishlist_bloc.dart';
+import 'package:ztu/blocs/wishlist/wishlist_state.dart';
 import 'package:ztu/widgets/custom_appbar.dart';
 import 'package:ztu/widgets/custom_nav_bar.dart';
 import 'package:ztu/widgets/product_card.dart';
@@ -23,18 +25,51 @@ class WishlistScreen extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(title: 'Wishlist'),
       bottomNavigationBar: const CustomBottomNavBar(),
-      body: GridView.builder(
-        padding: const EdgeInsets.all(20),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1, mainAxisSpacing: 8, childAspectRatio: 2.2),
-        itemCount: Product.products.length,
-        itemBuilder: (BuildContext context, int index) {
-          return ProductCard(
-            product: Product.products[index],
-            widthFactor: 1.1,
-            leftMargin: leftMargin,
-            isWishlist: true,
-          );
+      body: BlocBuilder<WishlistBloc, WishlistState>(
+        builder: (context, state) {
+          if (state is WishlistLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is WishlistLoaded) {
+            if (state.wishlist.products.isNotEmpty) {
+              return GridView.builder(
+                padding: const EdgeInsets.all(20),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 1,
+                    mainAxisSpacing: 8,
+                    childAspectRatio: 2.2),
+                itemCount: state.wishlist.products.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ProductCard(
+                    product: state.wishlist.products[index],
+                    widthFactor: 1.1,
+                    leftMargin: leftMargin,
+                    isWishlist: true,
+                  );
+                },
+              );
+            } else {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/empty_state.png',
+                  ),
+                  Text(
+                    "Somethings went wrong",
+                    style: Theme.of(context).textTheme.labelMedium,
+                  )
+                ],
+              );
+            }
+          } else {
+            return Text(
+              "Somethings went wrong",
+              style: Theme.of(context).textTheme.labelMedium,
+            );
+          }
         },
       ),
     );

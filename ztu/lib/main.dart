@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ztu/blocs/wishlist/wishlist_bloc.dart';
+import 'package:ztu/blocs/wishlist/wishlist_event.dart';
 import 'package:ztu/config/app_route.dart';
 import 'package:ztu/config/theme.dart';
 import 'package:ztu/screens/home/home_screen.dart';
@@ -13,12 +16,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Zero To Unicorn',
-      theme: theme(),
-      onGenerateRoute: AppRoute.onGenerateRoute,
-      initialRoute: HomeScreen.routeName,
-      home: const HomeScreen(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => WishlistBloc()..add(StartWishlist()))
+      ],
+      child: MaterialApp(
+        title: 'Zero To Unicorn',
+        theme: theme(),
+        onGenerateRoute: AppRoute.onGenerateRoute,
+        initialRoute: HomeScreen.routeName,
+        home: const HomeScreen(),
+      ),
     );
   }
 }
