@@ -31,7 +31,7 @@ TextTheme textTheme() {
     labelLarge: TextStyle(
         color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
     labelMedium: TextStyle(
-        color: Colors.black, fontSize: 12, fontWeight: FontWeight.normal),
+        color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
     labelSmall: TextStyle(
         color: Colors.black, fontSize: 11, fontWeight: FontWeight.normal),
     bodyLarge: TextStyle(
