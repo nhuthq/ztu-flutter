@@ -6,9 +6,11 @@ class Product extends Equatable {
   final double price;
   final String imgUrl;
   final bool isPopular;
+  final bool isWishlist;
   final bool isRecommended;
 
   const Product({
+    this.isWishlist = false,
     required this.name,
     required this.category,
     required this.price,

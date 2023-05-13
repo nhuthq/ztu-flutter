@@ -1,6 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ztu/blocs/cart/cart_bloc.dart';
+import 'package:ztu/blocs/cart/cart_event.dart';
+import 'package:ztu/blocs/cart/cart_state.dart';
 import 'package:ztu/blocs/wishlist/wishlist_bloc.dart';
 import 'package:ztu/blocs/wishlist/wishlist_event.dart';
 import 'package:ztu/blocs/wishlist/wishlist_state.dart';
@@ -51,18 +54,32 @@ class ProductScreen extends StatelessWidget {
                         SnackBar(content: Text("Added to your wishlist!"));
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   },
-                  icon: const Icon(Icons.favorite),
+                  icon: Icon(product.isWishlist
+                      ? Icons.favorite_rounded
+                      : Icons.favorite_border_rounded),
                   color: Colors.white,
                 );
               }),
-              ElevatedButton(
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                  onPressed: () {},
-                  child: Text(
-                    "ADD TO CART",
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ))
+              BlocBuilder<CartBloc, CartState>(
+                builder: (context, state) {
+                  return ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                    onPressed: () {
+                      context.read<CartBloc>().add(AddCartProduct(product));
+                      Navigator.pushNamed(context, '/cart');
+
+                      final snackBar =
+                          SnackBar(content: Text("Added to your Cart!"));
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                    },
+                    child: Text(
+                      "ADD TO CART",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),

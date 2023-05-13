@@ -29,7 +29,11 @@ class WishlistScreen extends StatelessWidget {
         builder: (context, state) {
           if (state is WishlistLoading) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  Colors.black,
+                ),
+              ),
             );
           } else if (state is WishlistLoaded) {
             if (state.wishlist.products.isNotEmpty) {
@@ -50,24 +54,28 @@ class WishlistScreen extends StatelessWidget {
                 },
               );
             } else {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/empty_state.png',
-                  ),
-                  Text(
-                    "Somethings went wrong",
-                    style: Theme.of(context).textTheme.labelMedium,
-                  )
-                ],
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/empty_state.png',
+                      width: 300,
+                      fit: BoxFit.scaleDown,
+                    ),
+                    Text(
+                      "Somethings went wrong",
+                      style: Theme.of(context).textTheme.titleMedium,
+                    )
+                  ],
+                ),
               );
             }
           } else {
             return Text(
               "Somethings went wrong",
-              style: Theme.of(context).textTheme.labelMedium,
+              style: Theme.of(context).textTheme.titleMedium,
             );
           }
         },

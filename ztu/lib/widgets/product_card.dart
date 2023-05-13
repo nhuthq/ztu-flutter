@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ztu/blocs/cart/cart_bloc.dart';
+import 'package:ztu/blocs/cart/cart_event.dart';
+import 'package:ztu/blocs/cart/cart_state.dart';
+import 'package:ztu/blocs/wishlist/wishlist_bloc.dart';
+import 'package:ztu/blocs/wishlist/wishlist_event.dart';
+import 'package:ztu/blocs/wishlist/wishlist_state.dart';
 import 'package:ztu/models/product.dart';
+import 'package:ztu/widgets/custom_circular_indicator.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -71,21 +79,49 @@ class ProductCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Expanded(
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.add_circle),
-                      color: Colors.white,
-                    ),
-                  ),
+                  BlocBuilder<CartBloc, CartState>(builder: (context, state) {
+                    if (state is CartLoaded) {
+                      return Expanded(
+                        child: IconButton(
+                          onPressed: () {
+                            context
+                                .read<CartBloc>()
+                                .add(AddCartProduct(product));
+                            final snackBar =
+                                SnackBar(content: Text("Added to your Cart!"));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          },
+                          icon: const Icon(Icons.add_circle),
+                          color: Colors.white,
+                        ),
+                      );
+                    } else {
+                      return const CustomCircularIndicator(
+                        height: 16,
+                        width: 16,
+                      );
+                    }
+                  }),
                   isWishlist
-                      ? Expanded(
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.delete_forever_rounded),
-                            color: Colors.white,
-                          ),
-                        )
+                      ? BlocBuilder<WishlistBloc, WishlistState>(
+                          builder: (context, state) {
+                          return Expanded(
+                            child: IconButton(
+                              onPressed: () {
+                                context
+                                    .read<WishlistBloc>()
+                                    .add(RemoveWishlistProduct(product));
+                                final snackBar =
+                                    SnackBar(content: Text("Removed!"));
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              },
+                              icon: const Icon(Icons.delete_forever_rounded),
+                              color: Colors.white,
+                            ),
+                          );
+                        })
                       : const SizedBox(),
                 ],
               ),
