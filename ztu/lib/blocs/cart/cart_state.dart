@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart'; 
+import 'package:equatable/equatable.dart';
 import 'package:ztu/models/cart.dart';
 
 abstract class CartState extends Equatable {
@@ -13,16 +13,8 @@ class CartLoading extends CartState {
 }
 
 class CartLoaded extends CartState {
-
-// final Wishlist wishlist;
-
-//   const WishlistLoaded({this.wishlist = const Wishlist()});
-
-//   @override
-//   List<Object> get props => [wishlist];
-
   final Cart cart;
-  
+
   const CartLoaded({this.cart = const Cart()});
 
   @override

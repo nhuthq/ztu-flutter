@@ -7,6 +7,7 @@ import 'package:ztu/blocs/wishlist/wishlist_event.dart';
 import 'package:ztu/config/app_route.dart';
 import 'package:ztu/config/theme.dart';
 import 'package:ztu/screens/home/home_screen.dart';
+import 'package:ztu/screens/splash/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         title: 'Zero To Unicorn',
         theme: theme(),
         onGenerateRoute: AppRoute.onGenerateRoute,
-        initialRoute: HomeScreen.routeName,
+        initialRoute: SplashScreen.routeName,
         home: const HomeScreen(),
       ),
     );
