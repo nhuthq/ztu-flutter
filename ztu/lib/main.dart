@@ -10,7 +10,7 @@ import 'package:ztu/config/theme.dart';
 import 'package:ztu/screens/home/home_screen.dart';
 import 'package:ztu/screens/splash/splash_screen.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
