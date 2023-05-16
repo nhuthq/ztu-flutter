@@ -81,10 +81,21 @@ class CartScreen extends StatelessWidget {
                     ),
                     Expanded(
                         child: ListView.builder(
-                            itemCount: state.cart.products.length,
+                            itemCount: state.cart
+                                .productQuantity(state.cart.products)
+                                .keys
+                                .length,
                             itemBuilder: (context, index) {
                               return CartProductCard(
-                                  product: state.cart.products[index]);
+                                product: state.cart
+                                    .productQuantity(state.cart.products)
+                                    .keys
+                                    .elementAt(index),
+                                quantity: state.cart
+                                    .productQuantity(state.cart.products)
+                                    .values
+                                    .elementAt(index),
+                              );
                             })),
                     const Divider(
                       thickness: 2,

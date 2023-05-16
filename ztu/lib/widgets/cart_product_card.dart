@@ -7,8 +7,10 @@ import 'package:ztu/models/product.dart';
 
 class CartProductCard extends StatelessWidget {
   final Product product;
+  final int quantity;
 
-  const CartProductCard({super.key, required this.product});
+  const CartProductCard(
+      {super.key, required this.product, required this.quantity});
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +58,7 @@ class CartProductCard extends StatelessWidget {
                     },
                     icon: const Icon(Icons.remove_circle_rounded)),
                 Text(
-                  "1",
+                  '$quantity',
                   style: Theme.of(context).textTheme.labelMedium,
                 ),
                 IconButton(
