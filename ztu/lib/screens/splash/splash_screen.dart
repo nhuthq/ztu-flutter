@@ -9,7 +9,7 @@ class SplashScreen extends StatelessWidget {
   static Route route() {
     return MaterialPageRoute(
         settings: const RouteSettings(name: routeName),
-        builder: (_) => const SplashScreen());
+        builder: (context) => const SplashScreen());
   }
 
   @override
@@ -19,7 +19,7 @@ class SplashScreen extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center( 
+          Center(
             child: Image.asset(
               'assets/images/logo.png',
               width: 125,

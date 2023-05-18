@@ -7,8 +7,6 @@ class Cart extends Equatable {
   final double _freeDeliveryReach = 30.0;
 
   const Cart({this.products = const <Product>[]});
-  // const Wishlist({this.products = const <Product>[]});
-
   double get subTotal =>
       products.fold(0, (total, current) => total + current.price);
 
@@ -22,7 +20,6 @@ class Cart extends Equatable {
     } else {
       double missing = _freeDeliveryReach - subTotal;
       return 'Add \$${missing.toStringAsFixed(2)} for FREE Delivery';
-      ;
     }
   }
 

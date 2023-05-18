@@ -27,14 +27,13 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double widthValue = MediaQuery.of(context).size.width / widthFactor;
-    final double topMatgin = defaultHeight / 2;
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, '/product', arguments: product);
       },
       child: Stack(
         children: [
-          Container(
+          SizedBox(
             width: widthValue,
             height: defaultHeight,
             child: Image.network(
@@ -87,7 +86,7 @@ class ProductCard extends StatelessWidget {
                             context
                                 .read<CartBloc>()
                                 .add(AddCartProduct(product));
-                            final snackBar =
+                            const snackBar =
                                 SnackBar(content: Text("Added to your Cart!"));
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
@@ -112,7 +111,7 @@ class ProductCard extends StatelessWidget {
                                 context
                                     .read<WishlistBloc>()
                                     .add(RemoveWishlistProduct(product));
-                                final snackBar =
+                                const snackBar =
                                     SnackBar(content: Text("Removed!"));
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(snackBar);

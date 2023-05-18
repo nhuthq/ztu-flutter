@@ -50,7 +50,7 @@ class ProductScreen extends StatelessWidget {
                         .read<WishlistBloc>()
                         .add(AddWishlistProduct(product));
 
-                    final snackBar =
+                    const snackBar =
                         SnackBar(content: Text("Added to your wishlist!"));
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   },
@@ -69,7 +69,7 @@ class ProductScreen extends StatelessWidget {
                       context.read<CartBloc>().add(AddCartProduct(product));
                       Navigator.pushNamed(context, '/cart');
 
-                      final snackBar =
+                      const snackBar =
                           SnackBar(content: Text("Added to your Cart!"));
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     },
