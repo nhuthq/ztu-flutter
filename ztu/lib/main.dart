@@ -12,6 +12,7 @@ import 'package:ztu/config/theme.dart';
 import 'package:ztu/repositories/category/category_repository.dart';
 import 'package:ztu/repositories/product/product_repository.dart';
 import 'package:ztu/screens/checkout/checkout_screen.dart';
+import 'package:ztu/screens/splash/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
         theme: theme(),
         debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRoute.onGenerateRoute,
-        initialRoute: CheckoutScreen.routeName,
+        initialRoute: SplashScreen.routeName,
       ),
     );
   }

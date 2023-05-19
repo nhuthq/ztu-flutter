@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 class CustomCircularIndicator extends StatelessWidget {
   final double width;
   final double height;
-  const CustomCircularIndicator({super.key, this.height = 32, this.width = 32});
+  final Color color;
+  const CustomCircularIndicator(
+      {super.key,
+      this.height = 32,
+      this.width = 32,
+      this.color = Colors.black});
 
   @override
   Widget build(BuildContext context) {
@@ -11,9 +16,9 @@ class CustomCircularIndicator extends StatelessWidget {
       child: SizedBox(
         width: width,
         height: height,
-        child: const CircularProgressIndicator(
+        child: CircularProgressIndicator(
           valueColor: AlwaysStoppedAnimation<Color>(
-            Colors.black,
+            color,
           ),
         ),
       ),

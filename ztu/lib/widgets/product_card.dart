@@ -99,6 +99,7 @@ class ProductCard extends StatelessWidget {
                       return const CustomCircularIndicator(
                         height: 16,
                         width: 16,
+                        color: Colors.white,
                       );
                     }
                   }),
