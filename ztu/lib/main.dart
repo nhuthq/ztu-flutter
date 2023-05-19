@@ -11,7 +11,6 @@ import 'package:ztu/config/app_route.dart';
 import 'package:ztu/config/theme.dart';
 import 'package:ztu/repositories/category/category_repository.dart';
 import 'package:ztu/repositories/product/product_repository.dart';
-import 'package:ztu/screens/checkout/checkout_screen.dart';
 import 'package:ztu/screens/splash/splash_screen.dart';
 
 Future<void> main() async {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ztu/widgets/custom_appbar.dart';
 import 'package:ztu/widgets/custom_nav_bar.dart';
 import 'package:ztu/widgets/section_title.dart';
@@ -30,21 +31,51 @@ class CheckoutScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SectionTitle(title: "CUSTOMER INFORMATION"),
-          _buildTextFormField(emailController, context, 'Email'),
-          _buildTextFormField(nameController, context, 'Full Name'),
+          _buildTextFormField(
+              emailController,
+              context,
+              'Email',
+              TextInputType.emailAddress,
+              FilteringTextInputFormatter.singleLineFormatter),
+          _buildTextFormField(
+              nameController,
+              context,
+              'Full Name',
+              TextInputType.name,
+              FilteringTextInputFormatter.singleLineFormatter),
           const SectionTitle(title: "DELIVERY INFORMATION"),
-          _buildTextFormField(addressController, context, 'Address'),
-          _buildTextFormField(cityController, context, 'City'),
-          _buildTextFormField(countryController, context, 'Country'),
-          _buildTextFormField(zipCodeController, context, 'Zip Code'),
+          _buildTextFormField(
+              addressController,
+              context,
+              'Address',
+              TextInputType.streetAddress,
+              FilteringTextInputFormatter.singleLineFormatter),
+          _buildTextFormField(
+              cityController,
+              context,
+              'City',
+              TextInputType.streetAddress,
+              FilteringTextInputFormatter.singleLineFormatter),
+          _buildTextFormField(
+              countryController,
+              context,
+              'Country',
+              TextInputType.streetAddress,
+              FilteringTextInputFormatter.singleLineFormatter),
+          _buildTextFormField(zipCodeController, context, 'Zip Code',
+              TextInputType.number, FilteringTextInputFormatter.digitsOnly),
           const SectionTitle(title: "ORDER SUMMARY"),
         ],
       ),
     );
   }
 
-  Padding _buildTextFormField(TextEditingController controller,
-      BuildContext context, String labelText) {
+  Padding _buildTextFormField(
+      TextEditingController controller,
+      BuildContext context,
+      String labelText,
+      TextInputType textInputType,
+      TextInputFormatter inputFormatter) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Row(
@@ -63,6 +94,8 @@ class CheckoutScreen extends StatelessWidget {
               controller: controller,
               cursorColor: Colors.grey,
               style: Theme.of(context).textTheme.labelMedium,
+              keyboardType: textInputType,
+              inputFormatters: [inputFormatter],
               decoration: const InputDecoration(
                   isDense: true,
                   focusedBorder: UnderlineInputBorder(

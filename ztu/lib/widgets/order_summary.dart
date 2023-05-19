@@ -55,9 +55,9 @@ class OrderSummary extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                 decoration: BoxDecoration(
-                    color: Colors.black.withAlpha(200),
+                    color: Colors.black,
                     border:
-                        Border.all(color: Colors.grey.withAlpha(80), width: 5)),
+                        Border.all(color: Colors.grey, width: 5)),
                 width: MediaQuery.of(context).size.width,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
