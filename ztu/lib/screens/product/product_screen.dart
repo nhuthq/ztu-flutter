@@ -1,14 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ztu/blocs/cart/cart_bloc.dart';
-import 'package:ztu/blocs/cart/cart_event.dart';
-import 'package:ztu/blocs/cart/cart_state.dart';
-import 'package:ztu/blocs/wishlist/wishlist_bloc.dart';
-import 'package:ztu/blocs/wishlist/wishlist_event.dart';
-import 'package:ztu/blocs/wishlist/wishlist_state.dart';
 import 'package:ztu/models/product.dart';
 import 'package:ztu/widgets/custom_appbar.dart';
+import 'package:ztu/widgets/custom_nav_bar.dart';
 import 'package:ztu/widgets/hero_carousel_card.dart';
 
 class ProductScreen extends StatelessWidget {
@@ -29,61 +23,7 @@ class ProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: product.name),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          height: 70,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.share),
-                color: Colors.white,
-              ),
-              BlocBuilder<WishlistBloc, WishlistState>(
-                  builder: (context, state) {
-                return IconButton(
-                  onPressed: () {
-                    context
-                        .read<WishlistBloc>()
-                        .add(AddWishlistProduct(product));
-
-                    const snackBar =
-                        SnackBar(content: Text("Added to your wishlist!"));
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  },
-                  icon: Icon(product.isWishlist
-                      ? Icons.favorite_rounded
-                      : Icons.favorite_border_rounded),
-                  color: Colors.white,
-                );
-              }),
-              BlocBuilder<CartBloc, CartState>(
-                builder: (context, state) {
-                  return ElevatedButton(
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                    onPressed: () {
-                      context.read<CartBloc>().add(AddCartProduct(product));
-                      Navigator.pushNamed(context, '/cart');
-
-                      const snackBar =
-                          SnackBar(content: Text("Added to your Cart!"));
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                    },
-                    child: Text(
-                      "ADD TO CART",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    ),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: const CustomBottomNavBar(screen: routeName),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 20),
         children: [

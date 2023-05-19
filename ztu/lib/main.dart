@@ -11,8 +11,7 @@ import 'package:ztu/config/app_route.dart';
 import 'package:ztu/config/theme.dart';
 import 'package:ztu/repositories/category/category_repository.dart';
 import 'package:ztu/repositories/product/product_repository.dart';
-import 'package:ztu/screens/home/home_screen.dart';
-import 'package:ztu/screens/splash/splash_screen.dart';
+import 'package:ztu/screens/checkout/checkout_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,9 +41,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Zero To Unicorn',
         theme: theme(),
+        debugShowCheckedModeBanner: false,
         onGenerateRoute: AppRoute.onGenerateRoute,
-        initialRoute: SplashScreen.routeName,
-        home: const HomeScreen(),
+        initialRoute: CheckoutScreen.routeName,
       ),
     );
   }

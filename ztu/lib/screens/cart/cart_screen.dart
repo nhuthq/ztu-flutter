@@ -5,6 +5,7 @@ import 'package:ztu/blocs/cart/cart_state.dart';
 import 'package:ztu/widgets/cart_product_card.dart';
 import 'package:ztu/widgets/custom_appbar.dart';
 import 'package:ztu/widgets/custom_circular_indicator.dart';
+import 'package:ztu/widgets/custom_nav_bar.dart';
 
 class CartScreen extends StatelessWidget {
   static const String routeName = '/cart';
@@ -22,26 +23,7 @@ class CartScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(title: 'Cart'),
-      bottomNavigationBar: BottomAppBar(
-        color: Colors.black,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          height: 70,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                  style:
-                      ElevatedButton.styleFrom(backgroundColor: Colors.white),
-                  onPressed: () {},
-                  child: Text(
-                    "GO TO CHECKOUT",
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ))
-            ],
-          ),
-        ),
-      ),
+      bottomNavigationBar: const CustomBottomNavBar(screen: routeName),
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
           if (state is CartLoading) {

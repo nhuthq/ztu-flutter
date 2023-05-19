@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ztu/blocs/category/category_bloc.dart';
 import 'package:ztu/blocs/product/product_bloc.dart';
-import 'package:ztu/models/product.dart';
 import 'package:ztu/widgets/custom_appbar.dart';
 import 'package:ztu/widgets/custom_circular_indicator.dart';
 import 'package:ztu/widgets/custom_nav_bar.dart';
@@ -27,7 +26,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(title: 'Zero To Unicorn'),
-      bottomNavigationBar: const CustomBottomNavBar(),
+      bottomNavigationBar: const CustomBottomNavBar(screen: routeName),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -80,10 +79,21 @@ class HomeScreen extends StatelessWidget {
             const SectionTitle(
               title: "MOST POPULAR",
             ),
-            // ProductCarousel(
-            //     products: Product.products
-            //         .where((product) => product.isPopular)
-            //         .toList())
+            BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
+              if (state is ProductLoading) {
+                return const CustomCircularIndicator();
+              } else if (state is ProductLoaded) {
+                return ProductCarousel(
+                    products: state.products
+                        .where((product) => product.isPopular)
+                        .toList());
+              } else {
+                return Text(
+                  "Somethings went wrong",
+                  style: Theme.of(context).textTheme.titleMedium,
+                );
+              }
+            })
           ],
         ),
       ),

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -14,7 +13,10 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timer(const Duration(seconds: 2), () => Navigator.pushNamed(context, '/'));
+    Timer(
+      const Duration(seconds: 2),
+      () => Navigator.of(context).pushNamedAndRemoveUntil('/home', (route) => false)
+    );
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

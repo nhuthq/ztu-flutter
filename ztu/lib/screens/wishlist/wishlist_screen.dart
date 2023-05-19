@@ -24,7 +24,7 @@ class WishlistScreen extends StatelessWidget {
     final double leftMargin = MediaQuery.of(context).size.width / 5 - 10;
     return Scaffold(
       appBar: const CustomAppBar(title: 'Wishlist'),
-      bottomNavigationBar: const CustomBottomNavBar(),
+      bottomNavigationBar: const CustomBottomNavBar(screen: routeName),
       body: BlocBuilder<WishlistBloc, WishlistState>(
         builder: (context, state) {
           if (state is WishlistLoading) {
