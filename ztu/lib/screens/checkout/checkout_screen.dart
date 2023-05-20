@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ztu/widgets/custom_appbar.dart';
 import 'package:ztu/widgets/custom_nav_bar.dart';
+import 'package:ztu/widgets/order_summary.dart';
 import 'package:ztu/widgets/section_title.dart';
 
 class CheckoutScreen extends StatelessWidget {
@@ -26,46 +27,95 @@ class CheckoutScreen extends StatelessWidget {
     return Scaffold(
       appBar: const CustomAppBar(title: 'Checkout'),
       bottomNavigationBar: const CustomBottomNavBar(screen: routeName),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SectionTitle(title: "CUSTOMER INFORMATION"),
-          _buildTextFormField(
-              emailController,
-              context,
-              'Email',
-              TextInputType.emailAddress,
-              FilteringTextInputFormatter.singleLineFormatter),
-          _buildTextFormField(
-              nameController,
-              context,
-              'Full Name',
-              TextInputType.name,
-              FilteringTextInputFormatter.singleLineFormatter),
-          const SectionTitle(title: "DELIVERY INFORMATION"),
-          _buildTextFormField(
-              addressController,
-              context,
-              'Address',
-              TextInputType.streetAddress,
-              FilteringTextInputFormatter.singleLineFormatter),
-          _buildTextFormField(
-              cityController,
-              context,
-              'City',
-              TextInputType.streetAddress,
-              FilteringTextInputFormatter.singleLineFormatter),
-          _buildTextFormField(
-              countryController,
-              context,
-              'Country',
-              TextInputType.streetAddress,
-              FilteringTextInputFormatter.singleLineFormatter),
-          _buildTextFormField(zipCodeController, context, 'Zip Code',
-              TextInputType.number, FilteringTextInputFormatter.digitsOnly),
-          const SectionTitle(title: "ORDER SUMMARY"),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.t/,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SectionTitle(title: "CUSTOMER INFORMATION"),
+            _buildTextFormField(
+                emailController,
+                context,
+                'Email',
+                TextInputType.emailAddress,
+                FilteringTextInputFormatter.singleLineFormatter),
+            _buildTextFormField(
+                nameController,
+                context,
+                'Full Name',
+                TextInputType.name,
+                FilteringTextInputFormatter.singleLineFormatter),
+            const SectionTitle(title: "DELIVERY INFORMATION"),
+            _buildTextFormField(
+                addressController,
+                context,
+                'Address',
+                TextInputType.streetAddress,
+                FilteringTextInputFormatter.singleLineFormatter),
+            _buildTextFormField(
+                cityController,
+                context,
+                'City',
+                TextInputType.streetAddress,
+                FilteringTextInputFormatter.singleLineFormatter),
+            _buildTextFormField(
+                countryController,
+                context,
+                'Country',
+                TextInputType.streetAddress,
+                FilteringTextInputFormatter.singleLineFormatter),
+            _buildTextFormField(zipCodeController, context, 'Zip Code',
+                TextInputType.number, FilteringTextInputFormatter.digitsOnly),
+            _buildBtnPaymentMethod(context),
+            const SectionTitle(title: "ORDER SUMMARY"),
+            const OrderSummary(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Padding _buildBtnPaymentMethod(
+    BuildContext context,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Container(
+        height: 40,
+        alignment: Alignment.bottomCenter,
+        decoration: const BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.all(Radius.circular(5.0)),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Center(
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/payment-selection',
+                  );
+                },
+                child: Text(
+                  'SELECT A PAYMENT METHOD',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium!
+                      .copyWith(color: Colors.white),
+                ),
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -77,7 +127,7 @@ class CheckoutScreen extends StatelessWidget {
       TextInputType textInputType,
       TextInputFormatter inputFormatter) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
