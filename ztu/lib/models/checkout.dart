@@ -43,9 +43,9 @@ class Checkout extends Equatable {
   Map<String, Object> toDocument() {
     Map cusomterAddress = Map();
     cusomterAddress['address'] = address;
-    cusomterAddress['city`'] = address;
-    cusomterAddress['country'] = address;
-    cusomterAddress['zipCode'] = address;
+    cusomterAddress['city`'] = city;
+    cusomterAddress['country'] = country;
+    cusomterAddress['zipCode'] = zipCode;
 
     return {
       'customerAdress': cusomterAddress,

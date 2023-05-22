@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ztu/blocs/checkout/checkout_bloc.dart';
+import 'package:ztu/blocs/checkout/checkout_event.dart';
+import 'package:ztu/blocs/checkout/checkout_state.dart';
 import 'package:ztu/widgets/custom_appbar.dart';
+import 'package:ztu/widgets/custom_circular_indicator.dart';
 import 'package:ztu/widgets/custom_nav_bar.dart';
 import 'package:ztu/widgets/order_summary.dart';
 import 'package:ztu/widgets/section_title.dart';
@@ -17,61 +22,70 @@ class CheckoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController addressController = TextEditingController();
-    final TextEditingController cityController = TextEditingController();
-    final TextEditingController countryController = TextEditingController();
-    final TextEditingController zipCodeController = TextEditingController();
-
     return Scaffold(
       appBar: const CustomAppBar(title: 'Checkout'),
       bottomNavigationBar: const CustomBottomNavBar(screen: routeName),
-      body: SingleChildScrollView(
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.t/,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SectionTitle(title: "CUSTOMER INFORMATION"),
-            _buildTextFormField(
-                emailController,
-                context,
-                'Email',
-                TextInputType.emailAddress,
-                FilteringTextInputFormatter.singleLineFormatter),
-            _buildTextFormField(
-                nameController,
-                context,
-                'Full Name',
-                TextInputType.name,
-                FilteringTextInputFormatter.singleLineFormatter),
-            const SectionTitle(title: "DELIVERY INFORMATION"),
-            _buildTextFormField(
-                addressController,
-                context,
-                'Address',
-                TextInputType.streetAddress,
-                FilteringTextInputFormatter.singleLineFormatter),
-            _buildTextFormField(
-                cityController,
-                context,
-                'City',
-                TextInputType.streetAddress,
-                FilteringTextInputFormatter.singleLineFormatter),
-            _buildTextFormField(
-                countryController,
-                context,
-                'Country',
-                TextInputType.streetAddress,
-                FilteringTextInputFormatter.singleLineFormatter),
-            _buildTextFormField(zipCodeController, context, 'Zip Code',
-                TextInputType.number, FilteringTextInputFormatter.digitsOnly),
-            _buildBtnPaymentMethod(context),
-            const SectionTitle(title: "ORDER SUMMARY"),
-            const OrderSummary(),
-          ],
-        ),
-      ),
+      body:
+          SingleChildScrollView(child: BlocBuilder<CheckoutBloc, CheckoutState>(
+        builder: (context, state) {
+          if (state is CheckoutLoading) {
+            return const CustomCircularIndicator();
+          } else if (state is CheckoutLoaded) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SectionTitle(title: "CUSTOMER INFORMATION"),
+                _buildTextFormField((value) {
+                  context
+                      .read<CheckoutBloc>()
+                      .add(UpdateCheckout(email: value));
+                }, context, 'Email', TextInputType.emailAddress,
+                    FilteringTextInputFormatter.singleLineFormatter),
+                _buildTextFormField((value) {
+                  context.read<CheckoutBloc>().add(
+                        UpdateCheckout(
+                          fullName: value,
+                        ),
+                      );
+                }, context, 'Full Name', TextInputType.name,
+                    FilteringTextInputFormatter.singleLineFormatter),
+                const SectionTitle(title: "DELIVERY INFORMATION"),
+                _buildTextFormField((value) {
+                  context
+                      .read<CheckoutBloc>()
+                      .add(UpdateCheckout(address: value));
+                }, context, 'Address', TextInputType.streetAddress,
+                    FilteringTextInputFormatter.singleLineFormatter),
+                _buildTextFormField((value) {
+                  context.read<CheckoutBloc>().add(UpdateCheckout(city: value));
+                }, context, 'City', TextInputType.streetAddress,
+                    FilteringTextInputFormatter.singleLineFormatter),
+                _buildTextFormField((value) {
+                  context
+                      .read<CheckoutBloc>()
+                      .add(UpdateCheckout(country: value));
+                }, context, 'Country', TextInputType.streetAddress,
+                    FilteringTextInputFormatter.singleLineFormatter),
+                _buildTextFormField((value) {
+                  context
+                      .read<CheckoutBloc>()
+                      .add(UpdateCheckout(zipCode: value));
+                }, context, 'Zip Code', TextInputType.number,
+                    FilteringTextInputFormatter.digitsOnly),
+                _buildBtnPaymentMethod(context),
+                const SectionTitle(title: "ORDER SUMMARY"),
+                const OrderSummary(),
+              ],
+            );
+          } else {
+            return Text(
+              "Somethings went wrong",
+              style: Theme.of(context).textTheme.titleMedium,
+            );
+          }
+        },
+      )),
     );
   }
 
@@ -121,7 +135,7 @@ class CheckoutScreen extends StatelessWidget {
   }
 
   Padding _buildTextFormField(
-      TextEditingController controller,
+      Function(String)? onChanged,
       BuildContext context,
       String labelText,
       TextInputType textInputType,
@@ -141,7 +155,7 @@ class CheckoutScreen extends StatelessWidget {
           Expanded(
             flex: 4,
             child: TextFormField(
-              controller: controller,
+              onChanged: onChanged,
               cursorColor: Colors.grey,
               style: Theme.of(context).textTheme.labelMedium,
               keyboardType: textInputType,

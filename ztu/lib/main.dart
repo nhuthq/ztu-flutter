@@ -4,12 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ztu/blocs/cart/cart_bloc.dart';
 import 'package:ztu/blocs/cart/cart_event.dart';
 import 'package:ztu/blocs/category/category_bloc.dart';
+import 'package:ztu/blocs/checkout/checkout_bloc.dart';
 import 'package:ztu/blocs/product/product_bloc.dart';
 import 'package:ztu/blocs/wishlist/wishlist_bloc.dart';
 import 'package:ztu/blocs/wishlist/wishlist_event.dart';
 import 'package:ztu/config/app_route.dart';
 import 'package:ztu/config/theme.dart';
 import 'package:ztu/repositories/category/category_repository.dart';
+import 'package:ztu/repositories/checkout/checkout_repository.dart';
 import 'package:ztu/repositories/product/product_repository.dart';
 import 'package:ztu/screens/splash/splash_screen.dart';
 
@@ -34,6 +36,11 @@ class MyApp extends StatelessWidget {
             categoryRepository: CategoryRepository(),
           )..add(LoadCategories()),
         ),
+        BlocProvider(
+            create: (context) => CheckoutBloc(
+                  cartBloc: context.read<CartBloc>(),
+                  checkoutRepository: CheckoutRepository(),
+                )),
         BlocProvider(
             create: (_) => ProductBloc(productRepository: ProductRepository())
               ..add(LoadProducts())),
