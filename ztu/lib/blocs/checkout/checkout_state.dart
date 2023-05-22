@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:equatable/equatable.dart';
 import 'package:ztu/models/checkout.dart';
 import 'package:ztu/models/product.dart';
