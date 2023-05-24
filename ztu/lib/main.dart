@@ -10,15 +10,36 @@ import 'package:ztu/blocs/wishlist/wishlist_bloc.dart';
 import 'package:ztu/blocs/wishlist/wishlist_event.dart';
 import 'package:ztu/config/app_route.dart';
 import 'package:ztu/config/theme.dart';
+import 'package:ztu/presentation/screens/splash/splash_screen.dart';
 import 'package:ztu/repositories/category/category_repository.dart';
 import 'package:ztu/repositories/checkout/checkout_repository.dart';
 import 'package:ztu/repositories/product/product_repository.dart';
-import 'package:ztu/screens/splash/splash_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = const AppBlocObserver();
+
   await Firebase.initializeApp();
   runApp(const MyApp());
+}
+
+class AppBlocObserver extends BlocObserver {
+  const AppBlocObserver();
+
+  @override
+  void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
+    super.onChange(bloc, change);
+    if (bloc is Cubit) print(change);
+  }
+
+  @override
+  void onTransition(
+    Bloc<dynamic, dynamic> bloc,
+    Transition<dynamic, dynamic> transition,
+  ) {
+    super.onTransition(bloc, transition);
+    print(transition);
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -29,8 +50,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => WishlistBloc()..add(WishlistStart())),
-        BlocProvider(create: (_) => CartBloc()..add(StartCart())),
+        BlocProvider(create: (_) => CartBloc()..add(LoadCart())),
+        BlocProvider(create: (_) => WishlistBloc()..add(LoadWishlist())),
         BlocProvider(
           create: (_) => CategoryBloc(
             categoryRepository: CategoryRepository(),
@@ -48,7 +69,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Zero To Unicorn',
         theme: theme(),
-        debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: true,
         onGenerateRoute: AppRoute.onGenerateRoute,
         initialRoute: SplashScreen.routeName,
       ),

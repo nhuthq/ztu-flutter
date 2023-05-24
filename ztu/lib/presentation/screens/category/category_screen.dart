@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:ztu/models/category_model.dart';
 import 'package:ztu/models/product.dart';
-import 'package:ztu/widgets/custom_appbar.dart';
-import 'package:ztu/widgets/custom_nav_bar.dart';
-import 'package:ztu/widgets/product_card.dart';
+import 'package:ztu/presentation/widgets/custom_nav_bar.dart';
+import 'package:ztu/presentation/widgets/product_card.dart';
+import 'package:ztu/presentation/widgets/custom_appbar.dart';
 
-class CatalogScreen extends StatelessWidget {
-  static const String routeName = '/catalog';
+class CategoryScreen extends StatelessWidget {
+  static const String routeName = '/category';
   final Category category;
-  const CatalogScreen({super.key, required this.category});
+  const CategoryScreen({super.key, required this.category});
 
   static Route route({required Category category}) {
     return MaterialPageRoute(
-        settings: const RouteSettings(name: routeName),
-        builder: (_) => CatalogScreen(
-              category: category,
-            ));
+      settings: const RouteSettings(name: routeName),
+      builder: (context) => CategoryScreen(category: category),
+    );
   }
 
   @override

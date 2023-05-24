@@ -4,11 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ztu/blocs/checkout/checkout_bloc.dart';
 import 'package:ztu/blocs/checkout/checkout_event.dart';
 import 'package:ztu/blocs/checkout/checkout_state.dart';
-import 'package:ztu/widgets/custom_appbar.dart';
-import 'package:ztu/widgets/custom_circular_indicator.dart';
-import 'package:ztu/widgets/custom_nav_bar.dart';
-import 'package:ztu/widgets/order_summary.dart';
-import 'package:ztu/widgets/section_title.dart';
+import 'package:ztu/presentation/widgets/custom_appbar.dart';
+import 'package:ztu/presentation/widgets/custom_circular_indicator.dart';
+import 'package:ztu/presentation/widgets/custom_nav_bar.dart';
+import 'package:ztu/presentation/widgets/order_summary.dart';
+import 'package:ztu/presentation/widgets/section_title.dart';
 
 class CheckoutScreen extends StatelessWidget {
   static const String routeName = '/checkout';

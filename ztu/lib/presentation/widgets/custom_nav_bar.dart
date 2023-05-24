@@ -10,7 +10,7 @@ import 'package:ztu/blocs/wishlist/wishlist_bloc.dart';
 import 'package:ztu/blocs/wishlist/wishlist_event.dart';
 import 'package:ztu/blocs/wishlist/wishlist_state.dart';
 import 'package:ztu/models/product.dart';
-import 'package:ztu/widgets/custom_circular_indicator.dart';
+import 'package:ztu/presentation/widgets/custom_circular_indicator.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   final String screen;
@@ -101,7 +101,9 @@ class AddToCartNavBar extends StatelessWidget {
                       content: Text('Added to your Wishlist!'),
                     ),
                   );
-                  context.read<WishlistBloc>().add(AddWishlistProduct(product));
+                  context
+                      .read<WishlistBloc>()
+                      .add(AddProductToWishlist(product));
                 },
               );
             }
@@ -119,7 +121,7 @@ class AddToCartNavBar extends StatelessWidget {
             if (state is CartLoaded) {
               return ElevatedButton(
                 onPressed: () {
-                  context.read<CartBloc>().add(AddCartProduct(product));
+                  context.read<CartBloc>().add(AddProductToCart(product));
                   Navigator.pushNamed(context, '/cart');
                 },
                 style: ElevatedButton.styleFrom(
@@ -187,7 +189,9 @@ class OrderNowNavBar extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    context.read<CheckoutBloc>().add(ConfirmCheckout(checkout: state.checkout));
+                    context
+                        .read<CheckoutBloc>()
+                        .add(ConfirmCheckout(checkout: state.checkout));
                     // Navigator.pushNamed(context, '/payment-selection');
                   },
                   style: ElevatedButton.styleFrom(

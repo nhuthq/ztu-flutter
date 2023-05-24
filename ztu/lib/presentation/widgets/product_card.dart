@@ -7,7 +7,7 @@ import 'package:ztu/blocs/wishlist/wishlist_bloc.dart';
 import 'package:ztu/blocs/wishlist/wishlist_event.dart';
 import 'package:ztu/blocs/wishlist/wishlist_state.dart';
 import 'package:ztu/models/product.dart';
-import 'package:ztu/widgets/custom_circular_indicator.dart';
+import 'package:ztu/presentation/widgets/custom_circular_indicator.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -85,7 +85,7 @@ class ProductCard extends StatelessWidget {
                           onPressed: () {
                             context
                                 .read<CartBloc>()
-                                .add(AddCartProduct(product));
+                                .add(AddProductToCart(product));
                             const snackBar =
                                 SnackBar(content: Text("Added to your Cart!"));
                             ScaffoldMessenger.of(context)
@@ -111,7 +111,7 @@ class ProductCard extends StatelessWidget {
                               onPressed: () {
                                 context
                                     .read<WishlistBloc>()
-                                    .add(RemoveWishlistProduct(product));
+                                    .add(RemoveProductFromWishlist(product));
                                 const snackBar =
                                     SnackBar(content: Text("Removed!"));
                                 ScaffoldMessenger.of(context)

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ztu/blocs/category/category_bloc.dart';
 import 'package:ztu/blocs/product/product_bloc.dart';
-import 'package:ztu/widgets/custom_appbar.dart';
-import 'package:ztu/widgets/custom_circular_indicator.dart';
-import 'package:ztu/widgets/custom_nav_bar.dart';
-import 'package:ztu/widgets/hero_carousel_card.dart';
-import 'package:ztu/widgets/product_carousel.dart';
-import 'package:ztu/widgets/section_title.dart';
+import 'package:ztu/presentation/widgets/custom_appbar.dart';
+import 'package:ztu/presentation/widgets/custom_circular_indicator.dart';
+import 'package:ztu/presentation/widgets/custom_nav_bar.dart';
+import 'package:ztu/presentation/widgets/hero_carousel_card.dart';
+import 'package:ztu/presentation/widgets/product_carousel.dart';
+import 'package:ztu/presentation/widgets/section_title.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/home';

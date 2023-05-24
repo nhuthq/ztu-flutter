@@ -1,29 +1,30 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:ztu/models/product.dart';
-import 'package:ztu/widgets/custom_appbar.dart';
-import 'package:ztu/widgets/custom_nav_bar.dart';
-import 'package:ztu/widgets/hero_carousel_card.dart';
+import 'package:ztu/presentation/widgets/custom_appbar.dart';
+import 'package:ztu/presentation/widgets/custom_nav_bar.dart';
+import 'package:ztu/presentation/widgets/hero_carousel_card.dart';
 
-class ProductScreen extends StatelessWidget {
+class ProductDetailsScreen extends StatelessWidget {
   static const String routeName = '/product';
 
   static Route route({required Product product}) {
     return MaterialPageRoute(
         settings: const RouteSettings(name: routeName),
-        builder: (_) => ProductScreen(
+        builder: (_) => ProductDetailsScreen(
               product: product,
             ));
   }
 
   final Product product;
-  const ProductScreen({super.key, required this.product});
+  const ProductDetailsScreen({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: product.name),
-      bottomNavigationBar: const CustomBottomNavBar(screen: routeName),
+      bottomNavigationBar:
+          CustomBottomNavBar(screen: routeName, product: product),
       body: ListView(
         padding: const EdgeInsets.symmetric(vertical: 20),
         children: [

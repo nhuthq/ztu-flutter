@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ztu/blocs/cart/cart_bloc.dart';
 import 'package:ztu/blocs/cart/cart_state.dart';
-import 'package:ztu/widgets/cart_product_card.dart';
-import 'package:ztu/widgets/custom_appbar.dart';
-import 'package:ztu/widgets/custom_circular_indicator.dart';
-import 'package:ztu/widgets/custom_nav_bar.dart';
-import 'package:ztu/widgets/order_summary.dart';
+import 'package:ztu/presentation/widgets/cart_product_card.dart';
+import 'package:ztu/presentation/widgets/custom_appbar.dart';
+import 'package:ztu/presentation/widgets/custom_circular_indicator.dart';
+import 'package:ztu/presentation/widgets/custom_nav_bar.dart';
+import 'package:ztu/presentation/widgets/order_summary.dart';
 
 class CartScreen extends StatelessWidget {
   static const String routeName = '/cart';
@@ -39,9 +39,11 @@ class CartScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          state.cart.freeDeliveryString,
-                          style: Theme.of(context).textTheme.titleSmall,
+                        Flexible(
+                          child: Text(
+                            state.cart.freeDeliveryString,
+                            style: Theme.of(context).textTheme.titleSmall,
+                          ),
                         ),
                         ElevatedButton(
                             onPressed: () {},
@@ -80,7 +82,7 @@ class CartScreen extends StatelessWidget {
                               );
                             })),
                     const OrderSummary(),
-                    ],
+                  ],
                 ),
               );
             } else {
