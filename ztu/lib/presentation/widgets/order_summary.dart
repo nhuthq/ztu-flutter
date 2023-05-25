@@ -16,7 +16,7 @@ class OrderSummary extends StatelessWidget {
               thickness: 2,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 40),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: Column(
                 children: [
                   Row(
@@ -24,11 +24,11 @@ class OrderSummary extends StatelessWidget {
                     children: [
                       Text(
                         "SUBTOTAL",
-                        style: Theme.of(context).textTheme.titleSmall,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       Text(
                         "\$${state.cart.subTotalString}",
-                        style: Theme.of(context).textTheme.titleSmall,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                     ],
                   ),
@@ -40,11 +40,11 @@ class OrderSummary extends StatelessWidget {
                     children: [
                       Text(
                         "DELIVERY FEE",
-                        style: Theme.of(context).textTheme.titleSmall,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                       Text(
                         "\$${state.cart.deliveryFeeString}",
-                        style: Theme.of(context).textTheme.titleSmall,
+                        style: Theme.of(context).textTheme.headlineSmall,
                       ),
                     ],
                   )
@@ -53,11 +53,10 @@ class OrderSummary extends StatelessWidget {
             ),
             Container(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 decoration: BoxDecoration(
                     color: Colors.black,
-                    border:
-                        Border.all(color: Colors.grey, width: 5)),
+                    border: Border.all(color: Colors.grey, width: 5)),
                 width: MediaQuery.of(context).size.width,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,14 +65,14 @@ class OrderSummary extends StatelessWidget {
                       "TOTAL",
                       style: Theme.of(context)
                           .textTheme
-                          .titleSmall!
+                          .headlineSmall!
                           .copyWith(color: Colors.white),
                     ),
                     Text(
                       "\$${state.cart.totalString}",
                       style: Theme.of(context)
                           .textTheme
-                          .titleSmall!
+                          .headlineSmall!
                           .copyWith(color: Colors.white),
                     ),
                   ],

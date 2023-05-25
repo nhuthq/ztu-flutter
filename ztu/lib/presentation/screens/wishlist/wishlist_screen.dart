@@ -64,10 +64,6 @@ class WishlistScreen extends StatelessWidget {
                       width: 300,
                       fit: BoxFit.scaleDown,
                     ),
-                    Text(
-                      "Somethings went wrong",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    )
                   ],
                 ),
               );
@@ -75,7 +71,7 @@ class WishlistScreen extends StatelessWidget {
           } else {
             return Text(
               "Somethings went wrong",
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.displayMedium,
             );
           }
         },

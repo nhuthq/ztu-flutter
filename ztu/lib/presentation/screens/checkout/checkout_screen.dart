@@ -73,6 +73,7 @@ class CheckoutScreen extends StatelessWidget {
                       .add(UpdateCheckout(zipCode: value));
                 }, context, 'Zip Code', TextInputType.number,
                     FilteringTextInputFormatter.digitsOnly),
+                const SizedBox(height: 10),
                 _buildBtnPaymentMethod(context),
                 const SectionTitle(title: "ORDER SUMMARY"),
                 const OrderSummary(),
@@ -116,7 +117,7 @@ class CheckoutScreen extends StatelessWidget {
                   'SELECT A PAYMENT METHOD',
                   style: Theme.of(context)
                       .textTheme
-                      .titleMedium!
+                      .displaySmall!
                       .copyWith(color: Colors.white),
                 ),
               ),
@@ -141,7 +142,7 @@ class CheckoutScreen extends StatelessWidget {
       TextInputType textInputType,
       TextInputFormatter inputFormatter) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -149,7 +150,7 @@ class CheckoutScreen extends StatelessWidget {
           Expanded(
             flex: 1,
             child:
-                Text(labelText, style: Theme.of(context).textTheme.labelSmall),
+                Text(labelText, style: Theme.of(context).textTheme.bodyLarge),
           ),
           const SizedBox(width: 10),
           Expanded(
@@ -157,11 +158,12 @@ class CheckoutScreen extends StatelessWidget {
             child: TextFormField(
               onChanged: onChanged,
               cursorColor: Colors.grey,
-              style: Theme.of(context).textTheme.labelMedium,
+              style: Theme.of(context).textTheme.titleLarge,
               keyboardType: textInputType,
               inputFormatters: [inputFormatter],
               decoration: const InputDecoration(
                   isDense: true,
+                  contentPadding: EdgeInsets.only(left: 10),
                   focusedBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.black))),
             ),

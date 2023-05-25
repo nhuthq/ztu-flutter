@@ -130,7 +130,7 @@ class AddToCartNavBar extends StatelessWidget {
                 ),
                 child: Text(
                   'ADD TO CART',
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme.of(context).textTheme.displaySmall,
                 ),
               );
             }
@@ -163,7 +163,7 @@ class GoToCheckoutNavBar extends StatelessWidget {
           ),
           child: Text(
             'GO TO CHECKOUT',
-            style: Theme.of(context).textTheme.titleMedium,
+            style: Theme.of(context).textTheme.displaySmall,
           ),
         ),
       ],
@@ -192,14 +192,14 @@ class OrderNowNavBar extends StatelessWidget {
                     context
                         .read<CheckoutBloc>()
                         .add(ConfirmCheckout(checkout: state.checkout));
-                    // Navigator.pushNamed(context, '/payment-selection');
+                    Navigator.pushNamed(context, '/order_confirmation');
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
                   ),
                   child: Text(
                     'ORDER NOW',
-                    style: Theme.of(context).textTheme.titleMedium,
+                    style: Theme.of(context).textTheme.displaySmall,
                   ),
                 )
               ]);
@@ -212,4 +212,4 @@ class OrderNowNavBar extends StatelessWidget {
       },
     );
   }
-}
+} 

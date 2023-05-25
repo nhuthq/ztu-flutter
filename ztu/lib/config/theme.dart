@@ -11,34 +11,28 @@ ThemeData theme() {
 TextTheme textTheme() {
   return const TextTheme(
     displayLarge: TextStyle(
-        color: Colors.black, fontSize: 57, fontWeight: FontWeight.bold),
-    displayMedium: TextStyle(
-        color: Colors.black, fontSize: 45, fontWeight: FontWeight.bold),
-    displaySmall: TextStyle(
         color: Colors.black, fontSize: 36, fontWeight: FontWeight.bold),
-    headlineLarge: TextStyle(
-        color: Colors.black, fontSize: 32, fontWeight: FontWeight.bold),
-    headlineMedium: TextStyle(
-        color: Colors.black, fontSize: 28, fontWeight: FontWeight.bold),
-    headlineSmall: TextStyle(
-        color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
-    titleLarge: TextStyle(
+    displayMedium: TextStyle(
         color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),
-    titleMedium: TextStyle(
+    displaySmall: TextStyle(
+        color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+    headlineMedium: TextStyle(
         color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
-    titleSmall: TextStyle(
+    headlineSmall: TextStyle(
         color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
-    labelLarge: TextStyle(
+    titleLarge: TextStyle(
         color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
-    labelMedium: TextStyle(
-        color: Colors.black, fontSize: 12, fontWeight: FontWeight.bold),
-    labelSmall: TextStyle(
-        color: Colors.black, fontSize: 11, fontWeight: FontWeight.normal),
     bodyLarge: TextStyle(
-        color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+      color: Colors.black,
+      fontWeight: FontWeight.normal,
+      fontSize: 14,
+    ),
     bodyMedium: TextStyle(
-        color: Colors.black, fontSize: 14, fontWeight: FontWeight.normal),
+      color: Colors.black,
+      fontWeight: FontWeight.normal,
+      fontSize: 12,
+    ),
     bodySmall: TextStyle(
-        color: Colors.black, fontSize: 12, fontWeight: FontWeight.normal),
+        color: Colors.black, fontWeight: FontWeight.normal, fontSize: 10),
   );
 }

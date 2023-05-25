@@ -59,14 +59,14 @@ class ProductDetailsScreen extends StatelessWidget {
                         product.name,
                         style: Theme.of(context)
                             .textTheme
-                            .titleMedium!
+                            .headlineSmall!
                             .copyWith(color: Colors.white),
                       ),
                       Text(
                         '\$${product.price}',
                         style: Theme.of(context)
                             .textTheme
-                            .titleSmall!
+                            .headlineSmall!
                             .copyWith(color: Colors.white),
                       ),
                     ],
@@ -82,13 +82,13 @@ class ProductDetailsScreen extends StatelessWidget {
               initiallyExpanded: true,
               title: Text(
                 'Product Description',
-                style: Theme.of(context).textTheme.titleMedium,
+                style: Theme.of(context).textTheme.displaySmall,
               ),
               children: [
                 ListTileTheme(
                     child: Text(
                   'Arabica Acerbic Affogato Aftertaste Aged Americano And Aroma, bar panna so Barista cortado trifecta extraction, skinny aftertaste filter java cultivar cinnamon. Mazagran trade Barista french and Acerbic acerbic Aged milk cinnamon origin carajillo, mountain coffee roast mug wings Bar single viennese pumpkin go pot, dripper crema flavour mocha At bar sit medium au breve. Espresso Brewed Blue iced Americano robust whipped, bar percolator  grounds go saucer robusta, Au shop Affogato Bar aged coffee, Barista blue strong origin aftertaste. Blue skinny coffee breve Brewed acerbic, siphon steamed And foam, qui Arabica ut latte. Go brewed At aftertaste sweet cinnamon caffeine rich strong caramelization Aftertaste, Body roast body frappuccino Beans extraction sit americano Aroma.',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ))
               ],
             ),
@@ -100,13 +100,13 @@ class ProductDetailsScreen extends StatelessWidget {
               tilePadding: const EdgeInsets.symmetric(horizontal: 0),
               title: Text(
                 'Delivery Information',
-                style: Theme.of(context).textTheme.titleMedium,
+                style: Theme.of(context).textTheme.displaySmall,
               ),
               children: [
                 ListTileTheme(
                     child: Text(
                   'Arabica Acerbic Affogato Aftertaste Aged Americano And Aroma, bar panna so Barista cortado trifecta extraction, skinny aftertaste filter java cultivar cinnamon. Mazagran trade Barista french and Acerbic acerbic Aged milk cinnamon origin carajillo, mountain coffee roast mug wings Bar single viennese pumpkin go pot, dripper crema flavour mocha At bar sit medium au breve. Espresso Brewed Blue iced Americano robust whipped, bar percolator  grounds go saucer robusta, Au shop Affogato Bar aged coffee, Barista blue strong origin aftertaste. Blue skinny coffee breve Brewed acerbic, siphon steamed And foam, qui Arabica ut latte. Go brewed At aftertaste sweet cinnamon caffeine rich strong caramelization Aftertaste, Body roast body frappuccino Beans extraction sit americano Aroma.',
-                  style: Theme.of(context).textTheme.bodyMedium,
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ))
               ],
             ),

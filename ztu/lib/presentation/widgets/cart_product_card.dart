@@ -34,13 +34,13 @@ class CartProductCard extends StatelessWidget {
                 Text(
                   product.name,
                   maxLines: 2,
-                  style: Theme.of(context).textTheme.labelMedium,
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 Text(
                   '\$${product.price}',
                   style: Theme.of(context)
                       .textTheme
-                      .labelSmall!
+                      .bodyLarge!
                       .copyWith(color: Colors.black87),
                 )
               ],
@@ -54,12 +54,14 @@ class CartProductCard extends StatelessWidget {
               children: [
                 IconButton(
                     onPressed: () {
-                      context.read<CartBloc>().add(RemoveProductFromCart(product));
+                      context
+                          .read<CartBloc>()
+                          .add(RemoveProductFromCart(product));
                     },
                     icon: const Icon(Icons.remove_circle_rounded)),
                 Text(
                   '$quantity',
-                  style: Theme.of(context).textTheme.labelMedium,
+                  style: Theme.of(context).textTheme.headlineSmall,
                 ),
                 IconButton(
                     onPressed: () {

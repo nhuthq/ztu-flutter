@@ -5,6 +5,7 @@ import 'package:ztu/presentation/screens/cart/cart_screen.dart';
 import 'package:ztu/presentation/screens/category/category_screen.dart';
 import 'package:ztu/presentation/screens/checkout/checkout_screen.dart';
 import 'package:ztu/presentation/screens/home/home_screen.dart';
+import 'package:ztu/presentation/screens/order_confirmation/order_confirmation_screen.dart';
 import 'package:ztu/presentation/screens/product/product_details_screen.dart';
 import 'package:ztu/presentation/screens/splash/splash_screen.dart';
 import 'package:ztu/presentation/screens/wishlist/wishlist_screen.dart';
@@ -29,6 +30,8 @@ class AppRoute {
         return WishlistScreen.route();
       case CheckoutScreen.routeName:
         return CheckoutScreen.route();
+      case OrderConfirmationScreen.routeName:
+        return OrderConfirmationScreen.route();
       default:
         return _errorRoute();
     }

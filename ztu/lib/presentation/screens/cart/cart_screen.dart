@@ -42,7 +42,7 @@ class CartScreen extends StatelessWidget {
                         Flexible(
                           child: Text(
                             state.cart.freeDeliveryString,
-                            style: Theme.of(context).textTheme.titleSmall,
+                            style: Theme.of(context).textTheme.headlineSmall,
                           ),
                         ),
                         ElevatedButton(
@@ -55,7 +55,7 @@ class CartScreen extends StatelessWidget {
                               "Add More Items",
                               style: Theme.of(context)
                                   .textTheme
-                                  .titleSmall!
+                                  .headlineSmall!
                                   .copyWith(color: Colors.white),
                             )),
                       ],
@@ -96,10 +96,6 @@ class CartScreen extends StatelessWidget {
                       width: 300,
                       fit: BoxFit.scaleDown,
                     ),
-                    Text(
-                      "Somethings went wrong",
-                      style: Theme.of(context).textTheme.titleMedium,
-                    )
                   ],
                 ),
               );
@@ -107,7 +103,7 @@ class CartScreen extends StatelessWidget {
           } else {
             return Text(
               "Somethings went wrong",
-              style: Theme.of(context).textTheme.titleMedium,
+              style: Theme.of(context).textTheme.displayMedium,
             );
           }
         },

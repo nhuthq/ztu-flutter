@@ -12,7 +12,7 @@ class SectionTitle extends StatelessWidget {
         alignment: Alignment.topLeft,
         child: Text(
           title,
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context).textTheme.displaySmall,
         ),
       ),
     );
