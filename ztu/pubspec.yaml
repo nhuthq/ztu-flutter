@@ -14,6 +14,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.5
+  flutter_svg: ^2.0.6 
 
   # Design pattern
   equatable: ^2.0.5
@@ -62,3 +63,5 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/svgs/
+    - assets/
