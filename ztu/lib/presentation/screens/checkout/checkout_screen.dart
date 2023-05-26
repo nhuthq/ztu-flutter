@@ -110,7 +110,7 @@ class CheckoutScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushNamed(
                     context,
-                    '/payment-selection',
+                    '/pay_selection',
                   );
                 },
                 child: Text(

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ztu/blocs/cart/cart_bloc.dart';
 import 'package:ztu/blocs/cart/cart_state.dart';
@@ -62,7 +63,7 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
     if (state is CheckoutLoaded) {
       try {
         await _checkoutRepository.addCheckout(event.checkout);
-        print('Done');
+        debugPrint('Done');
         emit(CheckoutLoading());
       } catch (_) {}
     }

@@ -8,5 +8,6 @@ class RouteList {
   static const String notification = '/notification';
   static const String productDetails = '/productDetails';
   static const String paymentMethods = '/paymentMethods';
+  static const String paymentSelection = '/payment_selection';
   static const String checkoutConfirmation = '/checkoutConfirmation';
 }

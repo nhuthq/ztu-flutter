@@ -10,6 +10,7 @@ import 'package:ztu/blocs/wishlist/wishlist_bloc.dart';
 import 'package:ztu/blocs/wishlist/wishlist_event.dart';
 import 'package:ztu/blocs/wishlist/wishlist_state.dart';
 import 'package:ztu/models/product.dart';
+import 'package:ztu/presentation/widgets/apple_pay.dart';
 import 'package:ztu/presentation/widgets/custom_circular_indicator.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
@@ -183,26 +184,30 @@ class OrderNowNavBar extends StatelessWidget {
         if (state is CheckoutLoading) {
           return const CustomCircularIndicator();
         } else if (state is CheckoutLoaded) {
-          return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    context
-                        .read<CheckoutBloc>()
-                        .add(ConfirmCheckout(checkout: state.checkout));
-                    Navigator.pushNamed(context, '/order_confirmation');
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
-                  ),
-                  child: Text(
-                    'ORDER NOW',
-                    style: Theme.of(context).textTheme.displaySmall,
-                  ),
-                )
-              ]);
+          return ApplePay(
+            products: state.products!,
+            total: state.total.toString(),
+          );
+          // return Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          //     crossAxisAlignment: CrossAxisAlignment.center,
+          //     children: [
+          //       ElevatedButton(
+          //         onPressed: () {
+          //           context
+          //               .read<CheckoutBloc>()
+          //               .add(ConfirmCheckout(checkout: state.checkout));
+          //           Navigator.pushNamed(context, '/order_confirmation');
+          //         },
+          //         style: ElevatedButton.styleFrom(
+          //           backgroundColor: Colors.white,
+          //         ),
+          //         child: Text(
+          //           'ORDER NOW',
+          //           style: Theme.of(context).textTheme.displaySmall,
+          //         ),
+          //       )
+          //     ]);
         } else {
           return Text(
             "Somethings went wrong",
@@ -212,4 +217,4 @@ class OrderNowNavBar extends StatelessWidget {
       },
     );
   }
-} 
+}
