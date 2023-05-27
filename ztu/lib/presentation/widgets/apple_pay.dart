@@ -4,8 +4,13 @@ import 'package:ztu/models/product.dart';
 
 class ApplePay extends StatelessWidget {
   final String total;
+  final String deliveryFee;
   final List<Product> products;
-  const ApplePay({super.key, required this.total, required this.products});
+  const ApplePay(
+      {super.key,
+      required this.total,
+      required this.products,
+      required this.deliveryFee});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +23,12 @@ class ApplePay extends StatelessWidget {
         .toList();
 
     paymentItems.add(PaymentItem(
+        label: 'Delivery fee',
+        amount: deliveryFee,
+        type: PaymentItemType.item,
+        status: PaymentItemStatus.final_price));
+
+    paymentItems.add(PaymentItem(
         label: 'Total',
         amount: total,
         type: PaymentItemType.item,
@@ -28,7 +39,7 @@ class ApplePay extends StatelessWidget {
     }
 
     return SizedBox(
-      width: MediaQuery.of(context).size.width - 50,
+      width: MediaQuery.of(context).size.width / 3,
       child: ApplePayButton(
         paymentConfigurationAsset: 'payment_profile_apple_pay.json',
         onPaymentResult: onPaymentResult,

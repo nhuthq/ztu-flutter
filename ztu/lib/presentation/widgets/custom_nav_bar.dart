@@ -4,7 +4,6 @@ import 'package:ztu/blocs/cart/cart_bloc.dart';
 import 'package:ztu/blocs/cart/cart_event.dart';
 import 'package:ztu/blocs/cart/cart_state.dart';
 import 'package:ztu/blocs/checkout/checkout_bloc.dart';
-import 'package:ztu/blocs/checkout/checkout_event.dart';
 import 'package:ztu/blocs/checkout/checkout_state.dart';
 import 'package:ztu/blocs/wishlist/wishlist_bloc.dart';
 import 'package:ztu/blocs/wishlist/wishlist_event.dart';
@@ -184,9 +183,16 @@ class OrderNowNavBar extends StatelessWidget {
         if (state is CheckoutLoading) {
           return const CustomCircularIndicator();
         } else if (state is CheckoutLoaded) {
-          return ApplePay(
-            products: state.products!,
-            total: state.total.toString(),
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ApplePay(
+                products: state.products!,
+                total: state.total.toString(),
+                deliveryFee: state.deliveryFee.toString(),
+              )
+            ],
           );
           // return Row(
           //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
