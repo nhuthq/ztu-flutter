@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:ztu/models/checkout.dart';
+import 'package:ztu/models/payment_method.dart';
 import 'package:ztu/models/product.dart';
 
 abstract class CheckoutState extends Equatable {
@@ -23,6 +24,7 @@ class CheckoutLoaded extends CheckoutState {
   final String? deliveryFee;
   final String? total;
   final Checkout checkout;
+  final PaymentMethod paymentMethod;
 
   CheckoutLoaded({
     this.fullName,
@@ -35,17 +37,19 @@ class CheckoutLoaded extends CheckoutState {
     this.subTotal,
     this.deliveryFee,
     this.total,
+    this.paymentMethod = PaymentMethod.google_pay,
   }) : checkout = Checkout(
-            fullName: fullName,
-            email: email,
-            address: address,
-            city: city,
-            country: country,
-            zipCode: zipCode,
-            products: products,
-            subTotal: subTotal,
-            deliveryFee: deliveryFee,
-            total: total);
+          fullName: fullName,
+          email: email,
+          address: address,
+          city: city,
+          country: country,
+          zipCode: zipCode,
+          products: products,
+          subTotal: subTotal,
+          deliveryFee: deliveryFee,
+          total: total,
+        );
 
   @override
   List<Object?> get props => [
@@ -59,5 +63,6 @@ class CheckoutLoaded extends CheckoutState {
         subTotal,
         deliveryFee,
         total,
+        paymentMethod,
       ];
 }

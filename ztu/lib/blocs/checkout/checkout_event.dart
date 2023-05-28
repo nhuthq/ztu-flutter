@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:ztu/models/cart.dart';
 import 'package:ztu/models/checkout.dart';
+import 'package:ztu/models/payment_method.dart';
 
 abstract class CheckoutEvent extends Equatable {
   const CheckoutEvent();
@@ -16,6 +17,7 @@ class UpdateCheckout extends CheckoutEvent {
   final String? country;
   final String? zipCode;
   final Cart? cart;
+  final PaymentMethod? paymentMethod;
 
   const UpdateCheckout(
       {this.fullName,
@@ -24,7 +26,8 @@ class UpdateCheckout extends CheckoutEvent {
       this.city,
       this.country,
       this.zipCode,
-      this.cart});
+      this.cart,
+      this.paymentMethod});
 
   @override
   List<Object?> get props =>

@@ -10,6 +10,7 @@ import 'package:ztu/blocs/checkout/checkout_state.dart';
 import 'package:ztu/blocs/wishlist/wishlist_bloc.dart';
 import 'package:ztu/blocs/wishlist/wishlist_event.dart';
 import 'package:ztu/blocs/wishlist/wishlist_state.dart';
+import 'package:ztu/models/payment_method.dart';
 import 'package:ztu/models/product.dart';
 import 'package:ztu/presentation/widgets/apple_pay.dart';
 import 'package:ztu/presentation/widgets/custom_circular_indicator.dart';
@@ -186,26 +187,42 @@ class OrderNowNavBar extends StatelessWidget {
         if (state is CheckoutLoading) {
           return const CustomCircularIndicator();
         } else if (state is CheckoutLoaded) {
-          return Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Platform.isIOS
-                  ? ApplePay(
-                      products: state.products!,
-                      total: state.total.toString(),
-                      deliveryFee: state.deliveryFee.toString(),
-                    )
-                  : const SizedBox(),
-              Platform.isAndroid
-                  ? GooglePay(
-                      products: state.products!,
-                      total: state.total.toString(),
-                      deliveryFee: state.deliveryFee.toString(),
-                    )
-                  : const SizedBox(),
-            ],
-          );
+          if (state.paymentMethod == PaymentMethod.credit_cart) {
+            return Container(
+              child: Text(
+                'Pay with Credit Card',
+                style: Theme.of(context)
+                    .textTheme
+                    .displaySmall!
+                    .copyWith(color: Colors.white),
+              ),
+            );
+          } else if (Platform.isAndroid &&
+              state.paymentMethod == PaymentMethod.google_pay) {
+            return GooglePay(
+              products: state.products!,
+              total: state.total!,
+              deliveryFee: state.deliveryFee!,
+            );
+          } else if (Platform.isIOS &&
+              state.paymentMethod == PaymentMethod.apple_pay) {
+            return ApplePay(
+              products: state.products!,
+              total: state.total!,
+              deliveryFee: state.deliveryFee!,
+            );
+          } else {
+            return ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/payment_selection');
+              },
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+              child: Text(
+                'CHOOSE PAYMENT',
+                style: Theme.of(context).textTheme.displaySmall,
+              ),
+            );
+          }
         } else {
           return Text(
             "Somethings went wrong",
