@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:pay/pay.dart';
 import 'package:ztu/presentation/widgets/custom_appbar.dart';
@@ -21,20 +22,24 @@ class PaymentSelectionScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(20.0),
         children: [
-          RawApplePayButton(
-            style: ApplePayButtonStyle.black,
-            type: ApplePayButtonType.inStore,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
+          Platform.isIOS
+              ? RawApplePayButton(
+                  style: ApplePayButtonStyle.black,
+                  type: ApplePayButtonType.inStore,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                )
+              : const SizedBox(),
           const SizedBox(height: 25),
-          RawGooglePayButton(
-            type: GooglePayButtonType.pay,
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
+          Platform.isAndroid
+              ? RawGooglePayButton(
+                  type: GooglePayButtonType.pay,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                )
+              : const SizedBox(),
           const SizedBox(height: 25),
           ElevatedButton(
             style: ButtonStyle(

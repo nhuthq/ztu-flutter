@@ -50,7 +50,7 @@ class OrderConfirmationScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
-                        .headline3!
+                        .displaySmall!
                         .copyWith(color: Colors.white),
                   ),
                 ),

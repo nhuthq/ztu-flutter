@@ -5,12 +5,13 @@ import 'package:ztu/blocs/cart/cart_bloc.dart';
 import 'package:ztu/blocs/cart/cart_event.dart';
 import 'package:ztu/blocs/category/category_bloc.dart';
 import 'package:ztu/blocs/checkout/checkout_bloc.dart';
+import 'package:ztu/blocs/payment/payment_bloc.dart';
+import 'package:ztu/blocs/payment/payment_event.dart';
 import 'package:ztu/blocs/product/product_bloc.dart';
 import 'package:ztu/blocs/wishlist/wishlist_bloc.dart';
 import 'package:ztu/blocs/wishlist/wishlist_event.dart';
 import 'package:ztu/config/app_route.dart';
 import 'package:ztu/config/theme.dart';
-import 'package:ztu/presentation/screens/payment_selection/payment_selection_screen.dart';
 import 'package:ztu/presentation/screens/splash/splash_screen.dart';
 import 'package:ztu/repositories/category/category_repository.dart';
 import 'package:ztu/repositories/checkout/checkout_repository.dart';
@@ -53,6 +54,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => CartBloc()..add(LoadCart())),
         BlocProvider(create: (_) => WishlistBloc()..add(LoadWishlist())),
+        BlocProvider(create: (_) => PaymentBloc()..add(LoadPayemntMethod())),
         BlocProvider(
           create: (_) => CategoryBloc(
             categoryRepository: CategoryRepository(),

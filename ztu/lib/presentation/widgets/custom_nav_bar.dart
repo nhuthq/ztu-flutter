@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ztu/blocs/cart/cart_bloc.dart';
@@ -11,6 +13,7 @@ import 'package:ztu/blocs/wishlist/wishlist_state.dart';
 import 'package:ztu/models/product.dart';
 import 'package:ztu/presentation/widgets/apple_pay.dart';
 import 'package:ztu/presentation/widgets/custom_circular_indicator.dart';
+import 'package:ztu/presentation/widgets/google_pay.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   final String screen;
@@ -184,36 +187,25 @@ class OrderNowNavBar extends StatelessWidget {
           return const CustomCircularIndicator();
         } else if (state is CheckoutLoaded) {
           return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ApplePay(
-                products: state.products!,
-                total: state.total.toString(),
-                deliveryFee: state.deliveryFee.toString(),
-              )
+              Platform.isIOS
+                  ? ApplePay(
+                      products: state.products!,
+                      total: state.total.toString(),
+                      deliveryFee: state.deliveryFee.toString(),
+                    )
+                  : const SizedBox(),
+              Platform.isAndroid
+                  ? GooglePay(
+                      products: state.products!,
+                      total: state.total.toString(),
+                      deliveryFee: state.deliveryFee.toString(),
+                    )
+                  : const SizedBox(),
             ],
           );
-          // return Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //     crossAxisAlignment: CrossAxisAlignment.center,
-          //     children: [
-          //       ElevatedButton(
-          //         onPressed: () {
-          //           context
-          //               .read<CheckoutBloc>()
-          //               .add(ConfirmCheckout(checkout: state.checkout));
-          //           Navigator.pushNamed(context, '/order_confirmation');
-          //         },
-          //         style: ElevatedButton.styleFrom(
-          //           backgroundColor: Colors.white,
-          //         ),
-          //         child: Text(
-          //           'ORDER NOW',
-          //           style: Theme.of(context).textTheme.displaySmall,
-          //         ),
-          //       )
-          //     ]);
         } else {
           return Text(
             "Somethings went wrong",
