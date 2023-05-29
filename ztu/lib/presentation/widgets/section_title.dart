@@ -7,7 +7,7 @@ class SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(right: 20, left: 20, top: 20, bottom: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Align(
         alignment: Alignment.topLeft,
         child: Text(

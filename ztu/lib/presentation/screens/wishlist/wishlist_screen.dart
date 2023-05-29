@@ -21,7 +21,6 @@ class WishlistScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double leftMargin = MediaQuery.of(context).size.width / 5 - 10;
     return Scaffold(
       appBar: const CustomAppBar(title: 'Wishlist'),
       bottomNavigationBar: const CustomBottomNavBar(screen: routeName),
@@ -45,10 +44,9 @@ class WishlistScreen extends StatelessWidget {
                     childAspectRatio: 2.2),
                 itemCount: state.wishlist.products.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return ProductCard(
+                  return ProductCard.wishlist(
                     product: state.wishlist.products[index],
                     widthFactor: 1.1,
-                    leftMargin: leftMargin,
                     isWishlist: true,
                   );
                 },

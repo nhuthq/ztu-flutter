@@ -35,6 +35,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             Container(
                 padding: const EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(bottom: 20),
                 child: BlocBuilder<CategoryBloc, CategoryState>(
                   builder: (context, state) {
                     if (state is CategoryLoading) {
@@ -42,10 +43,11 @@ class HomeScreen extends StatelessWidget {
                     } else if (state is CategoryLoaded) {
                       return CarouselSlider(
                         options: CarouselOptions(
-                            aspectRatio: 1.5,
-                            viewportFraction: 0.9,
-                            enlargeCenterPage: true,
-                            enlargeStrategy: CenterPageEnlargeStrategy.height),
+                          aspectRatio: 1.5,
+                          viewportFraction: 0.9,
+                          enlargeCenterPage: true,
+                          enlargeStrategy: CenterPageEnlargeStrategy.height,
+                        ),
                         items: state.categories
                             .map((category) =>
                                 HeroCarouselCard(category: category))

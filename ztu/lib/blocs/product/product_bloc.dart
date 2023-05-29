@@ -20,15 +20,16 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     on<UpdateProducts>(_onUpdateProducts);
   }
 
-  void _onLoadProducts(event, Emitter<ProductState> emit) async {
+  void _onLoadProducts(
+    LoadProducts event,
+    Emitter<ProductState> emit,
+  ) {
     _productSubscription?.cancel();
-    _productSubscription =
-        _productRepository.getAllProducts().listen((product) => {
-              debugPrint('Here ${product}'),
-              add(
-                UpdateProducts(product),
-              )
-            });
+    _productSubscription = _productRepository.getAllProducts().listen(
+          (products) => add(
+            UpdateProducts(products),
+          ),
+        );
   }
 
   void _onUpdateProducts(event, Emitter<ProductState> emit) async {

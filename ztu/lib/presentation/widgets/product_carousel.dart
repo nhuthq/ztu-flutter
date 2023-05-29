@@ -9,16 +9,17 @@ class ProductCarousel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 195,
+      height: 165,
       child: ListView.builder(
           shrinkWrap: true,
+          padding:
+              const EdgeInsets.only(left: 15, right: 20.0, top: 10, bottom: 10),
           scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.symmetric(horizontal: 20),
           itemCount: products.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: ProductCard(
+              padding: const EdgeInsets.only(left: 5),
+              child: ProductCard.category(
                 product: products[index],
               ),
             );

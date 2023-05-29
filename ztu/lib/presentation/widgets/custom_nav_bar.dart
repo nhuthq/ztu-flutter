@@ -188,40 +188,62 @@ class OrderNowNavBar extends StatelessWidget {
           return const CustomCircularIndicator();
         } else if (state is CheckoutLoaded) {
           if (state.paymentMethod == PaymentMethod.credit_cart) {
-            return Container(
-              child: Text(
-                'Pay with Credit Card',
-                style: Theme.of(context)
-                    .textTheme
-                    .displaySmall!
-                    .copyWith(color: Colors.white),
-              ),
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  child: Text(
+                    'Pay with Credit Card',
+                    style: Theme.of(context)
+                        .textTheme
+                        .displaySmall!
+                        .copyWith(color: Colors.white),
+                  ),
+                )
+              ],
             );
           } else if (Platform.isAndroid &&
               state.paymentMethod == PaymentMethod.google_pay) {
-            return GooglePay(
-              products: state.products!,
-              total: state.total!,
-              deliveryFee: state.deliveryFee!,
-            );
+            return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  GooglePay(
+                    products: state.products!,
+                    total: state.total!,
+                    deliveryFee: state.deliveryFee!,
+                  )
+                ]);
           } else if (Platform.isIOS &&
               state.paymentMethod == PaymentMethod.apple_pay) {
-            return ApplePay(
-              products: state.products!,
-              total: state.total!,
-              deliveryFee: state.deliveryFee!,
-            );
+            return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ApplePay(
+                    products: state.products!,
+                    total: state.total!,
+                    deliveryFee: state.deliveryFee!,
+                  )
+                ]);
           } else {
-            return ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/payment_selection');
-              },
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
-              child: Text(
-                'CHOOSE PAYMENT',
-                style: Theme.of(context).textTheme.displaySmall,
-              ),
-            );
+            return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/payment_selection');
+                    },
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.white),
+                    child: Text(
+                      'CHOOSE PAYMENT',
+                      style: Theme.of(context).textTheme.displaySmall,
+                    ),
+                  )
+                ]);
           }
         } else {
           return Text(

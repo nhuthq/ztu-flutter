@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ztu/blocs/cart/cart_bloc.dart';
 import 'package:ztu/blocs/cart/cart_state.dart';
-import 'package:ztu/presentation/widgets/cart_product_card.dart';
 import 'package:ztu/presentation/widgets/custom_appbar.dart';
 import 'package:ztu/presentation/widgets/custom_circular_indicator.dart';
 import 'package:ztu/presentation/widgets/custom_nav_bar.dart';
 import 'package:ztu/presentation/widgets/order_summary.dart';
+import 'package:ztu/presentation/widgets/product_card.dart';
 
 class CartScreen extends StatelessWidget {
   static const String routeName = '/cart';
@@ -30,6 +30,7 @@ class CartScreen extends StatelessWidget {
           if (state is CartLoading) {
             return const CustomCircularIndicator();
           } else if (state is CartLoaded) {
+            Map cart = state.cart.productQuantity(state.cart.products);
             if (state.cart.products.isNotEmpty) {
               return Padding(
                 padding:
@@ -64,23 +65,16 @@ class CartScreen extends StatelessWidget {
                       thickness: 2,
                     ),
                     Expanded(
-                        child: ListView.builder(
-                            itemCount: state.cart
-                                .productQuantity(state.cart.products)
-                                .keys
-                                .length,
-                            itemBuilder: (context, index) {
-                              return CartProductCard(
-                                product: state.cart
-                                    .productQuantity(state.cart.products)
-                                    .keys
-                                    .elementAt(index),
-                                quantity: state.cart
-                                    .productQuantity(state.cart.products)
-                                    .values
-                                    .elementAt(index),
-                              );
-                            })),
+                      child: ListView.builder(
+                        itemCount: cart.keys.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ProductCard.cart(
+                            product: cart.keys.elementAt(index),
+                            quantity: cart.values.elementAt(index),
+                          );
+                        },
+                      ),
+                    ),
                     const OrderSummary(),
                   ],
                 ),

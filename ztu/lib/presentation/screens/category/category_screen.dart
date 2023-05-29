@@ -34,7 +34,7 @@ class CategoryScreen extends StatelessWidget {
             childAspectRatio: 1.15),
         itemCount: categoryProducts.length,
         itemBuilder: (BuildContext context, int index) {
-          return ProductCard(
+          return ProductCard.category(
               product: categoryProducts[index], widthFactor: 2.2);
         },
       ),
