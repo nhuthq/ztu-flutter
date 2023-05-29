@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ztu/models/product.dart';
 import 'package:equatable/equatable.dart';
@@ -22,9 +23,12 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
   void _onLoadProducts(event, Emitter<ProductState> emit) async {
     _productSubscription?.cancel();
     _productSubscription =
-        _productRepository.getAllProducts().listen((product) => add(
-              UpdateProducts(product),
-            ));
+        _productRepository.getAllProducts().listen((product) => {
+              debugPrint('Here ${product}'),
+              add(
+                UpdateProducts(product),
+              )
+            });
   }
 
   void _onUpdateProducts(event, Emitter<ProductState> emit) async {
