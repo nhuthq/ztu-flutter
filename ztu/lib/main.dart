@@ -12,6 +12,7 @@ import 'package:ztu/blocs/wishlist/wishlist_bloc.dart';
 import 'package:ztu/blocs/wishlist/wishlist_event.dart';
 import 'package:ztu/config/app_route.dart';
 import 'package:ztu/config/theme.dart';
+import 'package:ztu/presentation/screens/order_confirmation/order_confirmation_screen.dart';
 import 'package:ztu/presentation/screens/splash/splash_screen.dart';
 import 'package:ztu/repositories/category/category_repository.dart';
 import 'package:ztu/repositories/checkout/checkout_repository.dart';
@@ -75,7 +76,7 @@ class MyApp extends StatelessWidget {
         theme: theme(),
         debugShowCheckedModeBanner: true,
         onGenerateRoute: AppRoute.onGenerateRoute,
-        initialRoute: SplashScreen.routeName,
+        initialRoute: OrderConfirmationScreen.routeName,
       ),
     );
   }

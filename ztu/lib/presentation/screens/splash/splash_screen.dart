@@ -38,7 +38,7 @@ class SplashScreen extends StatelessWidget {
               'Zero to Unicorn',
               style: Theme.of(context)
                   .textTheme
-                  .headlineSmall!
+                  .displayMedium!
                   .copyWith(color: Colors.white),
             ),
           )
