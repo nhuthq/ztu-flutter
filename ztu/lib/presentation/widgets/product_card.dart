@@ -32,7 +32,7 @@ class ProductCard extends StatelessWidget {
     this.iconColor = Colors.white,
     this.fontColor = Colors.white,
     this.height = 150,
-    this.widthFactor = 2.25,
+    this.widthFactor = 2.2,
   });
 
   const ProductCard.cart({

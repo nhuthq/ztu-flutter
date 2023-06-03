@@ -192,15 +192,13 @@ class OrderNowNavBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  child: Text(
-                    'Pay with Credit Card',
-                    style: Theme.of(context)
-                        .textTheme
-                        .displaySmall!
-                        .copyWith(color: Colors.white),
-                  ),
-                )
+                Text(
+                  'Pay with Credit Card',
+                  style: Theme.of(context)
+                      .textTheme
+                      .displaySmall!
+                      .copyWith(color: Colors.white),
+                ),
               ],
             );
           } else if (Platform.isAndroid &&

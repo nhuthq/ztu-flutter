@@ -7,6 +7,7 @@ import 'package:ztu/blocs/checkout/checkout_state.dart';
 import 'package:ztu/presentation/widgets/custom_appbar.dart';
 import 'package:ztu/presentation/widgets/custom_circular_indicator.dart';
 import 'package:ztu/presentation/widgets/custom_nav_bar.dart';
+import 'package:ztu/presentation/widgets/custom_text_form_field.dart';
 import 'package:ztu/presentation/widgets/order_summary.dart';
 import 'package:ztu/presentation/widgets/section_title.dart';
 
@@ -36,43 +37,72 @@ class CheckoutScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SectionTitle(title: "CUSTOMER INFORMATION"),
-                _buildTextFormField((value) {
-                  context
-                      .read<CheckoutBloc>()
-                      .add(UpdateCheckout(email: value));
-                }, context, 'Email', TextInputType.emailAddress,
-                    FilteringTextInputFormatter.singleLineFormatter),
-                _buildTextFormField((value) {
-                  context.read<CheckoutBloc>().add(
-                        UpdateCheckout(
-                          fullName: value,
-                        ),
-                      );
-                }, context, 'Full Name', TextInputType.name,
-                    FilteringTextInputFormatter.singleLineFormatter),
+                CustomTextFormField(
+                  title: 'Email',
+                  textInputType: TextInputType.emailAddress,
+                  textInputFormatter:
+                      FilteringTextInputFormatter.singleLineFormatter,
+                  onChanged: (value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(email: value));
+                  },
+                ),
+                CustomTextFormField(
+                  title: 'Full name',
+                  textInputType: TextInputType.name,
+                  textInputFormatter:
+                      FilteringTextInputFormatter.singleLineFormatter,
+                  onChanged: (value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(fullName: value));
+                  },
+                ),
                 const SectionTitle(title: "DELIVERY INFORMATION"),
-                _buildTextFormField((value) {
-                  context
-                      .read<CheckoutBloc>()
-                      .add(UpdateCheckout(address: value));
-                }, context, 'Address', TextInputType.streetAddress,
-                    FilteringTextInputFormatter.singleLineFormatter),
-                _buildTextFormField((value) {
-                  context.read<CheckoutBloc>().add(UpdateCheckout(city: value));
-                }, context, 'City', TextInputType.streetAddress,
-                    FilteringTextInputFormatter.singleLineFormatter),
-                _buildTextFormField((value) {
-                  context
-                      .read<CheckoutBloc>()
-                      .add(UpdateCheckout(country: value));
-                }, context, 'Country', TextInputType.streetAddress,
-                    FilteringTextInputFormatter.singleLineFormatter),
-                _buildTextFormField((value) {
-                  context
-                      .read<CheckoutBloc>()
-                      .add(UpdateCheckout(zipCode: value));
-                }, context, 'Zip Code', TextInputType.number,
-                    FilteringTextInputFormatter.digitsOnly),
+                CustomTextFormField(
+                  title: 'Address',
+                  textInputType: TextInputType.streetAddress,
+                  textInputFormatter:
+                      FilteringTextInputFormatter.singleLineFormatter,
+                  onChanged: (value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(address: value));
+                  },
+                ),
+                CustomTextFormField(
+                  title: 'City',
+                  textInputType: TextInputType.streetAddress,
+                  textInputFormatter:
+                      FilteringTextInputFormatter.singleLineFormatter,
+                  onChanged: (value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(city: value));
+                  },
+                ),
+                CustomTextFormField(
+                  title: 'Country',
+                  textInputType: TextInputType.streetAddress,
+                  textInputFormatter:
+                      FilteringTextInputFormatter.singleLineFormatter,
+                  onChanged: (value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(country: value));
+                  },
+                ),
+                CustomTextFormField(
+                  title: 'Zip Code',
+                  textInputType: TextInputType.number,
+                  textInputFormatter: FilteringTextInputFormatter.digitsOnly,
+                  onChanged: (value) {
+                    context
+                        .read<CheckoutBloc>()
+                        .add(UpdateCheckout(zipCode: value));
+                  },
+                ),
                 const SizedBox(height: 10),
                 _buildBtnPaymentMethod(context),
                 const SectionTitle(title: "ORDER SUMMARY"),
@@ -131,44 +161,6 @@ class CheckoutScreen extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-
-  Padding _buildTextFormField(
-      Function(String)? onChanged,
-      BuildContext context,
-      String labelText,
-      TextInputType textInputType,
-      TextInputFormatter inputFormatter) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Expanded(
-            flex: 1,
-            child:
-                Text(labelText, style: Theme.of(context).textTheme.bodyLarge),
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            flex: 4,
-            child: TextFormField(
-              onChanged: onChanged,
-              cursorColor: Colors.grey,
-              style: Theme.of(context).textTheme.titleLarge,
-              keyboardType: textInputType,
-              inputFormatters: [inputFormatter],
-              decoration: const InputDecoration(
-                  isDense: true,
-                  contentPadding: EdgeInsets.only(left: 10),
-                  focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black))),
-            ),
-          ),
-        ],
       ),
     );
   }
