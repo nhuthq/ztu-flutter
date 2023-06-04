@@ -13,6 +13,10 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Local storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
   cupertino_icons: ^1.0.5
   flutter_svg: ^2.0.6 
   pay: ^1.1.1
