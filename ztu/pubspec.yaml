@@ -13,13 +13,14 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # Local storage
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
-
   cupertino_icons: ^1.0.5
   flutter_svg: ^2.0.6 
   pay: ^1.1.1
+  path_provider: ^2.0.15
+
+  # Local storage
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
   # Design pattern
   equatable: ^2.0.5
@@ -42,10 +43,11 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.1
-  hive_generator: ^2.0.0
   flutter_native_splash: ^2.2.19
   flutter_launcher_icons: ^0.13.1
-
+  hive_generator: 2.0.0
+  build_runner: ^2.1.7
+  
 flutter_icons:
   android: true
   ios: true
