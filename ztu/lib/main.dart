@@ -20,7 +20,6 @@ import 'package:ztu/repositories/category/category_repository.dart';
 import 'package:ztu/repositories/checkout/checkout_repository.dart';
 import 'package:ztu/repositories/local_storage/local_storage_repository.dart';
 import 'package:ztu/repositories/product/product_repository.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 Future<void> main() async {

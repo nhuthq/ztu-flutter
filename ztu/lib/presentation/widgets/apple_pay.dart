@@ -41,7 +41,6 @@ class ApplePay extends StatelessWidget {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 3,
       child: ApplePayButton(
-        paymentConfigurationAsset: 'payment_profile_apple_pay.json',
         onPaymentResult: onPaymentResult,
         paymentItems: paymentItems,
         style: ApplePayButtonStyle.white,
